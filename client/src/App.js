@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import styled from "styled-components";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import GlobalStyles from "./GlobalStyles";
+import UserPosts from "./UserPosts";
+import UserProfiles from "./UserProfiles";
+import UserForm from "./UserForm";
+import UserMap from "./UserMap";
+import Homepage from "./Homepage";
+import SignIn from "./SignIn";
+import Filter from "./Filter";
+import Confirmation from "./Confirmation";
+import Header from "./Header";
 function App() {
+  const [user, setUser] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <BrowserRouter>
+        <Main>
+          <Header />
+          <Switch>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Route path="/usermap">
+              <UserMap />
+            </Route>
+            <Route path="/sign-in">
+              <SignIn user={user} setUser={setUser} />
+            </Route>
+            <Route exact path="/post">
+              <Post />
+            </Route>
+            <Route exact path="/usersposts">
+              <UserPosts />
+            </Route>
+            <Route path="/userform">
+              <UserForm />
+            </Route>
+            <Route path="/userprofiles">
+              <UserProfiles />
+            </Route>
+            <Route path="/filter">
+              <Filter />
+            </Route>
+            <Route path="/confirmed">
+              <Confirmation />
+            </Route>
+          </Switch>
+          <Footer />
+        </Main>
+      </BrowserRouter>
+    </>
   );
 }
-
 export default App;
+const Main = styled.div``;
