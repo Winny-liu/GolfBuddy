@@ -240,12 +240,12 @@ const getPostByName = async (req, res) => {
 };
 
 const getPostByTeeTime = async (req, res) => {
-  const { name } = req.params;
+  const { teeTime } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    const results = await db.collection("posts").findOne({ teetime });
+    const results = await db.collection("posts").findOne({ teeTime });
     results
       ? res.status(200).json({ status: 200, data: results })
       : res.status(404).json({ status: 404, data: "Posts not found" });
@@ -261,12 +261,12 @@ const getPostByTeeTime = async (req, res) => {
 };
 
 const getPostByGolfCourse = async (req, res) => {
-  const { name } = req.params;
+  const { golfCourse } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    const results = await db.collection("posts").findOne({ golfcourse });
+    const results = await db.collection("posts").findOne({ golfCourse });
     results
       ? res.status(200).json({ status: 200, data: results })
       : res.status(404).json({ status: 404, data: "Posts not found" });

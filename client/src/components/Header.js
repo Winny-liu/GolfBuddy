@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import UserMap from "./UserMap";
-import Filter from "./Filter";
+import Filter from "./UsersFilter";
 
 const Header = () => {
   let history = useHistory();
@@ -117,3 +117,5 @@ const UserMap = styled.button`
     background-color: var(--color-tahuna-sands);
   }
 `;
+
+export default Header;

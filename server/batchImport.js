@@ -9,8 +9,8 @@ const options = {
   useUnifiedTopology: true,
 };
 
-const posts = JSON.parse(fs.readFileSync("data/posts.json"));
-const users = JSON.parse(fs.readFileSync("data/users.json"));
+const posts = JSON.parse(fs.readFileSync("./data/posts.json"));
+const users = JSON.parse(fs.readFileSync("./data/users.json"));
 
 const batchImport = async () => {
   try {

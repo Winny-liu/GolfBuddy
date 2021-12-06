@@ -5,7 +5,7 @@ import UserProfiles from "./UserProfiles";
 import UserMap from "./UserMap";
 import UserPosts from "./UserPosts";
 import SignIn from "./SignIn";
-import Filter from "./Filter";
+
 
 import Header from "./Header";
 function App() {

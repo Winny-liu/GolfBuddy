@@ -9,7 +9,7 @@ import UserMap from "./UserMap";
 import Homepage from "./Homepage";
 import SignIn from "./SignIn";
 import Filter from "./Filter";
-import Confirmation from "./Confirmation";
+//import Confirmation from "./Confirmation";
 import Header from "./Header";
 function App() {
   const [user, setUser] = useState(null);
