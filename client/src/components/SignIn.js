@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 
 
+
+
 const SignIn = ({ user, setUser }) => {
   // Initial state of state variable inputData.
   const initialState = {
@@ -14,6 +16,11 @@ const SignIn = ({ user, setUser }) => {
   const [inputData, setInputData] = useState(initialState);
 
   const history = useHistory();
+
+  if(sessionStorage.getItem("signInUser")){
+    console.log("signedIn");
+    history.push("/");
+}
 
   // This function will be executed when the user has completed the form and clicked the Confirm button.
   const handleClick = (ev) => {

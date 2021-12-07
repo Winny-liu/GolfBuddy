@@ -15,7 +15,6 @@ const options = {
 
 // post newuser information
 const addUser = async (req, res) => {
-  const _id = uuidv4();
   const { name, email, password, age, gender, handicap, zipCode } = req.body;
   if (
     !name ||
@@ -26,12 +25,12 @@ const addUser = async (req, res) => {
     !handicap ||
     !zipCode
   ) {
-    res.status(400).json({
+    return res.status(500).json({
       status: "error",
       message: "Some info is missing, please fill all fields.",
     });
   } else if (!email.includes("@")) {
-    res.status(400).json({
+    return res.status(500).json({
       status: "error",
       message: "Please provide a valid email address.",
     });
@@ -40,8 +39,24 @@ const addUser = async (req, res) => {
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    let newUser = await db.collection("users").insertOne({ ...req.body, _id });
-    res.status(200).json({ status: 200, data: newUser });
+
+    let existUser = await db.collection("users").findOne({ email });
+    console.log(existUser);
+    if (existUser) {
+      return res.status(500).json({
+        status: "error",
+        message: " email address already exist.",
+      });
+    }
+
+    let newUser = await db.collection("users").insertOne({ ...req.body });
+    console.log(newUser);
+    if (newUser.acknowledged && newUser.insertedId) {
+     return res.status(201).json({ status: 201, user: {name, email, age, gender, handicap, zipCode} });
+    } else { return res.status(500).json({
+      status: "error",
+      message: " Fail to create new user.",
+    });}
   } catch (err) {
     console.log(err),
       res.status(500).json({
@@ -57,7 +72,20 @@ const addUser = async (req, res) => {
 ///login verifications
 const getUser = async (req, res) => {
   const { email } = req.body;
-  const { password} = req.body;
+
+  //let result = users.find((user) => user.email == req.body.email);
+  // if (result) {
+  // if (result.password == req.body.password) {
+  //  res.status(201).json({
+  //  message: "Successful singin",
+  // });
+  //} else {
+  // res.status(500).json({
+  //   status: 500,
+  //   message: "Something went wrong, please try again later",
+  // });
+  //  }
+  // }
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
@@ -65,8 +93,8 @@ const getUser = async (req, res) => {
     const user = await db.collection("users").findOne({ email });
     user
       ? res.status(200).json({ status: 200, data: user })
-      : res.status(404).json({
-          status: 404,
+      : res.status(500).json({
+          status: 500,
           data: " user not exist",
         });
   } catch (err) {
@@ -80,7 +108,7 @@ const getUser = async (req, res) => {
   }
 };
 
-const getUserByName = async (req, res) => {
+const getUsersByName = async (req, res) => {
   const { name } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   try {
@@ -168,16 +196,11 @@ const getUserByZipCode = async (req, res) => {
 
 const addPost = async (req, res) => {
   const _id = uuidv4();
-  const { name, golfCourse, teeTime, placesOfOping, email } = req.body;
-  if (!name || !golfCourse || !teeTime || !placesOfOping || !email) {
-    res.status(400).json({
+  const { golfCourse, teeTime, date, description } = req.body;
+  if (!date || !golfCourse || !teeTime || !description) {
+    return res.status(500).json({
       status: "error",
       message: "Some info is missing, please fill all fields.",
-    });
-  } else if (!email.includes("@")) {
-    res.status(400).json({
-      status: "error",
-      message: "Please provide a valid email address.",
     });
   }
   const client = new MongoClient(MONGO_URI, options);
@@ -185,7 +208,7 @@ const addPost = async (req, res) => {
     await client.connect();
     const db = client.db("Golfbuddy");
     let newPost = await db.collection("posts").insertOne({ ...req.body, _id });
-    res.status(200).json({ status: 200, data: newPost });
+    res.status(201).json({ status: 201, data: newPost });
   } catch (err) {
     console.log(err),
       res.status(500).json({
@@ -208,7 +231,7 @@ const getPosts = async (req, res) => {
     const allPosts = await db.collection("posts").find().toArray();
     console.log(allPosts);
     allPosts
-      ? res.status(200).json({ status: 200, data: allCategories })
+      ? res.status(200).json({ status: 200, data: allPosts })
       : res.status(404).json({ status: 404, data: "post not found" });
     client.close();
   } catch (err) {
@@ -286,7 +309,7 @@ const getPostByGolfCourse = async (req, res) => {
 module.exports = {
   addUser,
   getUser,
-  getUserByName,
+  getUsersByName,
   getUserByGender,
   getUserByZipCode,
   getUserByHandicap,

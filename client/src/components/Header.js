@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 
 const Header = () => {
   let history = useHistory();
@@ -20,7 +21,7 @@ const Header = () => {
   const handleFilterBarClick = () => {
     history.push(`/filterbar`);
   };
-
+  const { user } = useContext(CurrentUserContext);
   return (
     <Wrapper>
       <Container>
@@ -34,27 +35,32 @@ const Header = () => {
         <Title>GolfBuddy</Title>
 
         <RightSideButtons>
-          <NewPost
-            onClick={handleNewPostClick}
-            onKeyPress={handleNewPostClick}
-            tabIndex="0"
-          >
-            Post a game
-          </NewPost>
-          <SignUp
-            onClick={handleSignUpClick}
-            onKeyPress={handleSignUpClick}
-            tabIndex="0"
-          >
-            Sign up
-          </SignUp>
-          <SignIn
-            onClick={handleSignInClick}
-            onKeyPress={handleSignInClick}
-            tabIndex="0"
-          >
-            Sign in
-          </SignIn>
+          {user ? (
+            <NewPost
+              onClick={handleNewPostClick}
+              onKeyPress={handleNewPostClick}
+              tabIndex="0"
+            >
+              Post a game
+            </NewPost>
+          ) : (
+            <>
+              <SignUp
+                onClick={handleSignUpClick}
+                onKeyPress={handleSignUpClick}
+                tabIndex="0"
+              >
+                Sign up
+              </SignUp>
+              <SignIn
+                onClick={handleSignInClick}
+                onKeyPress={handleSignInClick}
+                tabIndex="0"
+              >
+                Sign in
+              </SignIn>
+            </>
+          )}
         </RightSideButtons>
       </Container>
     </Wrapper>

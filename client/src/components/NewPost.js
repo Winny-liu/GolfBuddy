@@ -1,35 +1,40 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { useHistory } from "react-router";
 
+//const CurrentUser = sessionStorage.getItem("signInUser");
+
+
+
 const NewPost = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+
+  //const {user, status} =useContext(CurrentUserContext);
+ 
 
   const [teeTime, setTeeTime] = useState("");
 
   const [golfCourse, setGolfCourse] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("");
+  const [ status, setStatus] = useState("");
 
   let history = useHistory();
 
   const handleSubmit = () => {
-    fetch(`/api/post/`, {
+    fetch(`/api/posts/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
       body: JSON.stringify({
-        name,
+        
         date,
         teeTime,
         golfCourse,
         description,
-        email,
+        
       }),
     })
       .then((res) => res.json())
@@ -46,32 +51,9 @@ const NewPost = () => {
   return (
     <>
       <Container>
-        <Box>
-          <Label for="name">Name: </Label>
-          <Input
-            type="text"
-            placeholder="Name"
-            required
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-        </Box>
-
-        <Box>
-          <Label for="email">Email: </Label>
-
-          <Input
-            type="email"
-            placeholder="Email"
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </Box>
+       
+      {/*<Name>{user.name}</Name>
+       <Email>{user.email}</Email> */}
         <Box>
           <Label for="golfCourse">Golf Course: </Label>
           <Input
@@ -137,6 +119,10 @@ const Container = styled.div`
   border-radius: 5px;
   border: solid var(--color-alabama-crimson);
 `;
+
+const Name = styled.div``
+const Email = styled.div``
+
 
 const Box = styled.div`
   display: flex;

@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import { useHistory } from "react-router";
+import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -13,11 +14,12 @@ const SignUp = () => {
   const [zipCode, setZipCode] = useState("");
   const [status, setStatus] = useState("");
 
+  const { setUser } = useContext(CurrentUserContext);
   let history = useHistory();
 
   const handleSubmit = () => {
     fetch(`/api/signup/`, {
-      method: "Post",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -27,6 +29,7 @@ const SignUp = () => {
         email,
         password,
         age,
+        gender,
         handicap,
         zipCode,
       }),
@@ -34,8 +37,10 @@ const SignUp = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === 201) {
-          setStatus("confirmed");
-          history.push(`/confirmed`);
+          setUser(data.user);
+          console.log(data);
+          history.push(`/`);
+         
         } else if (data.status === 400) {
           setStatus("error");
           //setErrMessage(data.message);
@@ -43,7 +48,21 @@ const SignUp = () => {
       });
   };
 
-  
+  let readyToSubmit = false;
+
+  // Data validation for the user sign-in form.
+  if (
+    name !== "" &&
+    email !== "" &&
+    password !== "" &&
+    age !== "" &&
+    handicap !== "" &&
+    zipCode !== ""
+  ) {
+    // If the user input in the form meets all the requirements, `readyToSubmit` becomes true and the Confirm button is enabled.
+    readyToSubmit = true;
+  }
+
   return (
     <>
       <Container>
@@ -117,9 +136,18 @@ const SignUp = () => {
           }}
         ></Input>
 
-        <Button type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
+        <Div>
+          <Button type="reset">Clear</Button>
+          {readyToSubmit ? (
+            <Button type="submit" onClick={handleSubmit}>
+              Confirm
+            </Button>
+          ) : (
+            <Button type="submit" onClick={handleSubmit} disabled>
+              Confirm
+            </Button>
+          )}
+        </Div>
       </Container>
     </>
   );
@@ -129,7 +157,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   padding: 20px;
   border-radius: 5px;
   border: solid var(--color-alabama-crimson);
@@ -138,6 +166,11 @@ const Container = styled.div`
 const Input = styled.input`
   width: 300px;
   margin-bottom: 5px;
+`;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 const Button = styled.button`

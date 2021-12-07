@@ -5,6 +5,7 @@ const router = express.Router();
 const {
    
     addPost,
+    getPosts,
     getPostByName,
     getPostByTeeTime,
     getPostByGolfCourse,
@@ -18,7 +19,7 @@ const {
 router.post("/api/posts", addPost);
 
 //get all posts
-router.get("/api/posts", getUser);
+router.get("/api/posts", getPosts);
 
 //get posts by name 
 router.get("/api/posts/:name", getPostByName);
