@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const UserMap = () => {};
+const UserMap = () => {
+  return null;
+};
 
 export default UserMap;

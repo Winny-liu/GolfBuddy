@@ -56,17 +56,18 @@ const addUser = async (req, res) => {
 
 ///login verifications
 const getUser = async (req, res) => {
-  const { password } = req.body;
+  const { email } = req.body;
+  const { password} = req.body;
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    const user = await db.collection("users").findOne({ password });
+    const user = await db.collection("users").findOne({ email });
     user
       ? res.status(200).json({ status: 200, data: user })
       : res.status(404).json({
           status: 404,
-          data: "Incorrect user",
+          data: " user not exist",
         });
   } catch (err) {
     res.status(500).json({
@@ -101,15 +102,15 @@ const getUserByName = async (req, res) => {
 };
 
 const getUserByGender = async (req, res) => {
-  const { name } = req.params;
+  const { gender } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    const results = await db.collection("users").findOne({ name });
+    const results = await db.collection("users").findOne({ gender });
     results
       ? res.status(200).json({ status: 200, data: results })
-      : res.status(404).json({ status: 404, data: "name not found" });
+      : res.status(404).json({ status: 404, data: " not found" });
   } catch (err) {
     res.status(500).json({
       status: 500,
@@ -122,15 +123,15 @@ const getUserByGender = async (req, res) => {
 };
 
 const getUserByHandicap = async (req, res) => {
-  const { name } = req.params;
+  const { handicap } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    const results = await db.collection("users").findOne({ name });
+    const results = await db.collection("users").findOne({ handicap });
     results
       ? res.status(200).json({ status: 200, data: results })
-      : res.status(404).json({ status: 404, data: "name not found" });
+      : res.status(404).json({ status: 404, data: " not found" });
   } catch (err) {
     res.status(500).json({
       status: 500,
@@ -143,12 +144,12 @@ const getUserByHandicap = async (req, res) => {
 };
 
 const getUserByZipCode = async (req, res) => {
-  const { name } = req.params;
+  const { zipCode } = req.params;
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
     const db = client.db("Golfbuddy");
-    const results = await db.collection("users").findOne({ name });
+    const results = await db.collection("users").findOne({ zipCode });
     results
       ? res.status(200).json({ status: 200, data: results })
       : res.status(404).json({ status: 404, data: "name not found" });

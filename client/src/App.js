@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import GlobalStyles from "./GlobalStyles";
-import UserPosts from "./UserPosts";
-import UserProfiles from "./UserProfiles";
-import UserForm from "./UserForm";
-import UserMap from "./UserMap";
-import Homepage from "./Homepage";
-import SignIn from "./SignIn";
-import Filter from "./Filter";
-//import Confirmation from "./Confirmation";
-import Header from "./Header";
+import GlobalStyles from "./components/GlobalStyles";
+import SignIn from "./components/SignIn";
+
+import Header from "./components/Header";
+import SignUp from "./components/SignUp";
+import NewPost from "./components/NewPost";
+
+
 function App() {
   const [user, setUser] = useState(null);
   return (
@@ -21,34 +19,20 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/">
-              <Homepage />
+              Homepage
             </Route>
-            <Route path="/usermap">
-              <UserMap />
-            </Route>
+
             <Route path="/sign-in">
               <SignIn user={user} setUser={setUser} />
             </Route>
-            <Route exact path="/post">
-              <Post />
+            <Route exact path="/signup">
+              <SignUp />
             </Route>
-            <Route exact path="/usersposts">
-              <UserPosts />
+            <Route exact path="/newpost">
+              <NewPost />
             </Route>
-            <Route path="/userform">
-              <UserForm />
-            </Route>
-            <Route path="/userprofiles">
-              <UserProfiles />
-            </Route>
-            <Route path="/filter">
-              <Filter />
-            </Route>
-            <Route path="/confirmed">
-              <Confirmation />
-            </Route>
+            
           </Switch>
-          <Footer />
         </Main>
       </BrowserRouter>
     </>

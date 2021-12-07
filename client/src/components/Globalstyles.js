@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-export default GlobalStyle`
+const GlobalStyles = createGlobalStyle`
 :root {
     --color-don-juan: #5B5151;
     --color-keppel: #39AEA9;
@@ -70,3 +70,4 @@ export default GlobalStyle`
           content: none;
       }
   `;
+export default GlobalStyles;

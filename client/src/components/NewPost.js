@@ -12,12 +12,13 @@ const NewPost = () => {
   const [golfCourse, setGolfCourse] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
+  const [status, setStatus] = useState("");
 
   let history = useHistory();
 
   const handleSubmit = () => {
     fetch(`/api/post/`, {
-      method: "Post",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -41,10 +42,12 @@ const NewPost = () => {
           //setErrMessage(data.message);
         }
       });
-
-    return (
-      <>
-        <Container>
+  };
+  return (
+    <>
+      <Container>
+        <Box>
+          <Label for="name">Name: </Label>
           <Input
             type="text"
             placeholder="Name"
@@ -53,7 +56,11 @@ const NewPost = () => {
             onChange={(e) => {
               setName(e.target.value);
             }}
-          ></Input>
+          />
+        </Box>
+
+        <Box>
+          <Label for="email">Email: </Label>
 
           <Input
             type="email"
@@ -63,8 +70,22 @@ const NewPost = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-          ></Input>
-
+          />
+        </Box>
+        <Box>
+          <Label for="golfCourse">Golf Course: </Label>
+          <Input
+            type="text"
+            placeholder="GolfCourse"
+            required
+            value={golfCourse}
+            onChange={(e) => {
+              setGolfCourse(e.target.value);
+            }}
+          />
+        </Box>
+        <Box>
+          <Label for="teeTime">TeeTime: </Label>
           <Input
             type="text"
             placeholder="TeeTime"
@@ -73,8 +94,10 @@ const NewPost = () => {
             onChange={(e) => {
               setTeeTime(e.target.value);
             }}
-          ></Input>
-
+          />
+        </Box>
+        <Box>
+          <Label for="date">Date: </Label>
           <Input
             type="text"
             placeholder="Date"
@@ -83,8 +106,10 @@ const NewPost = () => {
             onChange={(e) => {
               setDate(e.target.value);
             }}
-          ></Input>
-
+          />
+        </Box>
+        <Box>
+          <Label for="description">Description: </Label>
           <Input
             type="text"
             placeholder="Description"
@@ -93,25 +118,36 @@ const NewPost = () => {
             onChange={(e) => {
               setDescription(e.target.value);
             }}
-          ></Input>
+          />
+        </Box>
 
-          <Button type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Container>
-      </>
-    );
-  };
+        <Button type="submit" onClick={handleSubmit}>
+          Submit
+        </Button>
+      </Container>
+    </>
+  );
 };
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 20px;
   border-radius: 5px;
   border: solid var(--color-alabama-crimson);
 `;
 
+const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+`;
+
+const Label = styled.div`
+  margin: 20px;
+`;
 const Input = styled.input`
   width: 300px;
   margin-bottom: 5px;

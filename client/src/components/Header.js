@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import UserMap from "./UserMap";
-import Filter from "./UsersFilter";
 
 const Header = () => {
   let history = useHistory();
@@ -12,11 +10,15 @@ const Header = () => {
   const handleSignInClick = () => {
     history.push(`/sign-in`);
   };
-  const handleFilterClick = () => {
-    history.push(`/filter`);
+  const handleSignUpClick = () => {
+    history.push(`/signup`);
   };
-  const handleUserMapClick = () => {
-    history.push(`/usermap`);
+
+  const handleNewPostClick = () => {
+    history.push(`/newpost`);
+  };
+  const handleFilterBarClick = () => {
+    history.push(`/filterbar`);
   };
 
   return (
@@ -30,15 +32,22 @@ const Header = () => {
           Home
         </HomeButton>
         <Title>GolfBuddy</Title>
+
         <RightSideButtons>
-          <Filter
-            onClick={handleFilterClick}
-            onKeyPress={handleFilterClick}
+          <NewPost
+            onClick={handleNewPostClick}
+            onKeyPress={handleNewPostClick}
             tabIndex="0"
           >
-            Find a game or a partner
-          </Filter>
-
+            Post a game
+          </NewPost>
+          <SignUp
+            onClick={handleSignUpClick}
+            onKeyPress={handleSignUpClick}
+            tabIndex="0"
+          >
+            Sign up
+          </SignUp>
           <SignIn
             onClick={handleSignInClick}
             onKeyPress={handleSignInClick}
@@ -46,23 +55,17 @@ const Header = () => {
           >
             Sign in
           </SignIn>
-          <UserMap
-            onClick={handleUserMapClick}
-            onKeyPress={handleUserMapClick}
-            tabIndex="0"
-          >
-            UserMap
-          </UserMap>
         </RightSideButtons>
       </Container>
     </Wrapper>
   );
 };
-export default Header;
+
 const Wrapper = styled.div`
   box-shadow: 0 0 5px 0px rgb(0 0 0 / 0.5);
   background-color: var(--color-elm);
   border-radius: 0 0 3px 3px;
+  margin: 10px;
 `;
 const Container = styled.div`
   display: flex;
@@ -70,7 +73,7 @@ const Container = styled.div`
   align-items: center;
   padding: 15px;
 `;
-
+const Title = styled.div``;
 const HomeButton = styled.button`
   font-size: 30px;
   padding: 3px;
@@ -90,10 +93,10 @@ const RightSideButtons = styled.div`
   align-items: center;
 `;
 
-const SignIn = styled.button`
+const NewPost = styled.button`
   font-size: 30px;
   padding: 3px;
-  border-radius: 3px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
   background-color: var(--color-moss-green);
@@ -103,10 +106,21 @@ const SignIn = styled.button`
   }
 `;
 
-const Filter = styled.div``;
-const UserMap = styled.button`
+const SignIn = styled.button`
   font-size: 30px;
-  margin: 0 0 0 10px;
+  padding: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color-moss-green);
+  color: var(--color-don-juan);
+  &:active {
+    background-color: var(--color-tahuna-sands);
+  }
+`;
+
+const SignUp = styled.button`
+  font-size: 30px;
   padding: 3px;
   border-radius: 3px;
   cursor: pointer;
