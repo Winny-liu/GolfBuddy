@@ -1,12 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 :root {
-    --color-don-juan: #5B5151;
-    --color-keppel: #39AEA9;
-    --color-moss-green: #A2D5AB;
-    --color-tahuna-sands: #E5EFC1;
-    --color-elm: #22696F;
-}
+    --color-don-juan: #008176;
+    --color-keppel:#b9e769
+    --color-moss-green: #E1EEC7;
+    --color-tahuna-sands: #FCFCFC;
+    --color-elm: #FF6164;
+} 
       *,
       *:before,
       *:after {
@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
       text {
           
           font-family: "Poppins",sans-serif;
+          color:#008176 ;
       }
   
       html, body {

@@ -1,5 +1,10 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
+import { CurrentUserContext } from "./Contexts/CurrentUserContext";
+import UserProfiles from "./UserProfiles";
+
+
+
 
 
 const FilterBar = ({
@@ -11,6 +16,10 @@ const FilterBar = ({
   onHandicapFilter,
   onAgeFilter,
 }) => {
+  
+
+    
+
   const [filters, setFilters] = useState({
     name: "",
     email: "",
@@ -40,18 +49,20 @@ const FilterBar = ({
       case "gender":
         onGenderFilter(value);
         break;
+        case "age":
+          onAgeFilter(value);
+          break;
+          case "handicap":
+            onHandicapFilter(value);
+            break;
       case "from":
         onDateFilter(value, "from");
         break;
       case "to":
         onDateFilter(value, "to");
         break;
-      case "handicap":
-        onHandicapFilter(value);
-        break;
-      case "age":
-        onAgeFilter(value);
-        break;
+     
+     
       default:
         break;
     }
@@ -80,7 +91,7 @@ const FilterBar = ({
             onChange={handleInput("email")}
           />
         </Box>
-        <Box>
+       {/* <Box>
           <label htmlFor="gender">Gender</label>
           <select className="form" id="gender" onChange={handleInput("gender")}>
             <option value="">Select</option>
@@ -90,7 +101,50 @@ const FilterBar = ({
               </option>
             ))}
           </select>
+            </Box>*/}
+
+<Box>
+          <label htmlFor="age">Age</label>
+          <input
+            type="age"
+            className="form"
+            id="age"
+            value={""}
+            onChange={handleInput("age")}
+          />
         </Box>
+        <Box>
+          <label htmlFor="handicap">Handicap</label>
+          <input
+            type="text"
+            className="form"
+            id="handicap"
+            value={""}
+            onChange={handleInput("handicap")}
+          />
+        </Box>
+            <Box>
+          <label htmlFor="startDate">From</label>
+          <input
+            type="date"
+            className="form"
+            id="startDate"
+            value={""}
+            onChange={handleInput("from")}
+          />
+        </Box>
+        <Box>
+          <label htmlFor="endDate">To</label>
+          <input
+            type="date"
+            className="to"
+            id="endDate"
+            value={""}
+            onChange={handleInput("to")}
+          />
+        </Box>
+
+
       </Container>
     </Wrapper>
   );

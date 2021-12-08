@@ -3,6 +3,9 @@ import styled from "styled-components";
 
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
+import UserCard from "./UserCard";
+import FilterBar from "./FilterBar";
+import UserProfiles from "./UserProfiles";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -50,12 +53,13 @@ const SignUp = () => {
 
   let readyToSubmit = false;
 
-  // Data validation for the user sign-in form.
+  // Data validation for the user sign-up form.
   if (
     name !== "" &&
     email !== "" &&
     password !== "" &&
     age !== "" &&
+    gender !== "" &&
     handicap !== "" &&
     zipCode !== ""
   ) {
@@ -149,6 +153,8 @@ const SignUp = () => {
           )}
         </Div>
       </Container>
+      <UserCard/>
+    
     </>
   );
 };
@@ -174,12 +180,25 @@ const Div = styled.div`
 `;
 
 const Button = styled.button`
-  margin-top: 5px;
-  cursor: pointer;
-  background: var(--color-alabama-crimson);
-  border: none;
-  color: var(--color-selective-yellow);
+ border: 1px solid;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px 20px;
+  font-weight: 300;
   border-radius: 5px;
+  height:5vh;
+  
+  &&:hover {
+  background-color: #b9e769;
+  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+}
+
+
+
+
 `;
 
 export default SignUp;

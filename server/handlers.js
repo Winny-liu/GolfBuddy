@@ -52,11 +52,18 @@ const addUser = async (req, res) => {
     let newUser = await db.collection("users").insertOne({ ...req.body });
     console.log(newUser);
     if (newUser.acknowledged && newUser.insertedId) {
-     return res.status(201).json({ status: 201, user: {name, email, age, gender, handicap, zipCode} });
-    } else { return res.status(500).json({
-      status: "error",
-      message: " Fail to create new user.",
-    });}
+      return res
+        .status(201)
+        .json({
+          status: 201,
+          user: { name, email, age, gender, handicap, zipCode },
+        });
+    } else {
+      return res.status(500).json({
+        status: "error",
+        message: " Fail to create new user.",
+      });
+    }
   } catch (err) {
     console.log(err),
       res.status(500).json({
@@ -91,6 +98,7 @@ const getUser = async (req, res) => {
     await client.connect();
     const db = client.db("Golfbuddy");
     const user = await db.collection("users").findOne({ email });
+    console.log(user);
     user
       ? res.status(200).json({ status: 200, data: user })
       : res.status(500).json({
@@ -105,6 +113,26 @@ const getUser = async (req, res) => {
   } finally {
     client.close();
     console.log("disconnected!");
+  }
+};
+
+const getUsers = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  try {
+    await client.connect();
+    const db = client.db("Golfbuddy");
+
+    const allUsers = await db.collection("users").find().toArray();
+    console.log(allUsers);
+    allUsers
+      ? res.status(200).json({ status: 200, data: allUsers })
+      : res.status(404).json({ status: 404, data: "users not found" });
+    client.close();
+  } catch (err) {
+    res.status(500).json({
+      status: 500,
+      message: "Something went wrong, please try again later.",
+    });
   }
 };
 
@@ -309,6 +337,7 @@ const getPostByGolfCourse = async (req, res) => {
 module.exports = {
   addUser,
   getUser,
+  getUsers,
   getUsersByName,
   getUserByGender,
   getUserByZipCode,

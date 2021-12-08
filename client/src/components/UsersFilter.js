@@ -3,6 +3,7 @@ import styled from "styled-components";
 import dayjs from "dayjs";
 import FilterBar from "./components/FilterBar";
 
+
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
 const isSameOrBefore = require("dayjs/plugin/isSameOrBefore");
 dayjs.extend(isSameOrBefore);

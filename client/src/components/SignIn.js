@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
+import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 
 
-
-
-const SignIn = ({ user, setUser }) => {
+const SignIn = () => {
+  const { setUser } = useContext(CurrentUserContext);
   // Initial state of state variable inputData.
   const initialState = {
     email: "",
@@ -17,10 +17,10 @@ const SignIn = ({ user, setUser }) => {
 
   const history = useHistory();
 
-  if(sessionStorage.getItem("signInUser")){
-    console.log("signedIn");
-    history.push("/");
-}
+  //if(sessionStorage.getItem("signInUser")){
+  // console.log("signedIn");
+  //history.push("/");
+  //}
 
   // This function will be executed when the user has completed the form and clicked the Confirm button.
   const handleClick = (ev) => {
@@ -40,9 +40,10 @@ const SignIn = ({ user, setUser }) => {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log (res)
         if (res.status === 200) {
           console.log(data);
-          setUser(data);
+          setUser(res.data);
           history.push("/");
         } else {
           alert("email address or password is incorrect.");
@@ -65,7 +66,7 @@ const SignIn = ({ user, setUser }) => {
       <Form onSubmit={handleClick}>
         <Container>
           <Input
-            type=" email"
+            type="email"
             placeholder="Email Address "
             name="email"
             onChange={(ev) => {
@@ -74,7 +75,7 @@ const SignIn = ({ user, setUser }) => {
           />
 
           <Input
-            type=" password"
+            type="password"
             placeholder="Password"
             name="password"
             onChange={(ev) => {
@@ -104,7 +105,7 @@ const Wrapper = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  background-color: lightgray;
+  background-color: #b9e769;
   width: 50vw;
   height: 60vh;
   margin-top: 30px;
@@ -116,6 +117,7 @@ const Title = styled.div`
   justify-content: center;
   font-size: 50px;
   font-weight: bolder;
+  color: white;
 `;
 const Form = styled.form`
   display: flex;
@@ -125,7 +127,7 @@ const Form = styled.form`
   margin: 40px;
   position: relative;
   padding: 24px;
-  background-color: white;
+  background-color: #e1eec7;
   width: 450px;
   padding: 24px;
   margin-top: 32px;
@@ -137,9 +139,9 @@ const Form = styled.form`
   font-size: 15px;
 `;
 const Input = styled.input`
-display: flex;
-align-items:center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: #d2d2d2 1px solid;
   border-radius: 4px;
   margin: 10px;
@@ -153,23 +155,23 @@ const Button = styled.button`
   display: flex;
   text-align: center;
   align-items: center;
-  height: 30px;
-  width: 120px;
+  height: 20px;
+  width: 100px;
   padding: 10px 20px;
-  border-radius: 7px;
-  justify-content: center;
-  background: linear-gradient(
-    97deg,
-    rgba(22, 160, 133, 1) 0%,
-    rgba(243, 199, 83, 1) 31%,
-    rgba(22, 160, 133, 1) 81%
-  );
-  background-position: 125%;
+  border: 1px solid #008176;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-size: 14px;
 
-  @keyframes shine {
-    to {
-      background-position: -70%;
-    }
+  font-weight: 300;
+  border-radius: 5px;
+  height: 5vh;
+
+  &&:hover {
+    background-color: #b9e769;
+    -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
   }
 `;
 

@@ -2,24 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { useHistory } from "react-router";
+import UserProfiles from "./UserProfiles";
 
 //const CurrentUser = sessionStorage.getItem("signInUser");
 
-
-
 const NewPost = () => {
-
-  //const {user, status} =useContext(CurrentUserContext);
- 
+  const { user, setStatus } = useContext(CurrentUserContext);
+  
 
   const [teeTime, setTeeTime] = useState("");
 
   const [golfCourse, setGolfCourse] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
-  const [ status, setStatus] = useState("");
 
   let history = useHistory();
+  console.log(user);
 
   const handleSubmit = () => {
     fetch(`/api/posts/`, {
@@ -29,12 +27,12 @@ const NewPost = () => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        
+        name: user.name,
+        email: user.email,
         date,
         teeTime,
         golfCourse,
         description,
-        
       }),
     })
       .then((res) => res.json())
@@ -48,12 +46,10 @@ const NewPost = () => {
         }
       });
   };
+
   return (
     <>
       <Container>
-       
-      {/*<Name>{user.name}</Name>
-       <Email>{user.email}</Email> */}
         <Box>
           <Label for="golfCourse">Golf Course: </Label>
           <Input
@@ -69,7 +65,7 @@ const NewPost = () => {
         <Box>
           <Label for="teeTime">TeeTime: </Label>
           <Input
-            type="text"
+            type="time"
             placeholder="TeeTime"
             required
             value={teeTime}
@@ -81,7 +77,7 @@ const NewPost = () => {
         <Box>
           <Label for="date">Date: </Label>
           <Input
-            type="text"
+            type="date"
             placeholder="Date"
             required
             value={date}
@@ -120,9 +116,8 @@ const Container = styled.div`
   border: solid var(--color-alabama-crimson);
 `;
 
-const Name = styled.div``
-const Email = styled.div``
-
+const Name = styled.div``;
+const Email = styled.div``;
 
 const Box = styled.div`
   display: flex;

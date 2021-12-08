@@ -5,6 +5,7 @@ const router = express.Router();
 const {
   addUser,
   getUser,
+  getUsers,
   getUsersByName,
   getUserByGender,
   getUserByZipCode,
@@ -21,6 +22,8 @@ router.post("/api/signin", getUser);
 
 //get all users
 router.get("/api/users/:password", getUser);
+
+router.get("/api/users", getUsers);
 
 //get user by name
 router.get("/api/users/:name", getUsersByName);

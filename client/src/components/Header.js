@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
+import UserProfiles from "./UserProfiles";
 
 const Header = () => {
   let history = useHistory();
@@ -18,10 +19,12 @@ const Header = () => {
   const handleNewPostClick = () => {
     history.push(`/newpost`);
   };
-  const handleFilterBarClick = () => {
-    history.push(`/filterbar`);
+  const handleUserProfilesClick = () => {
+    history.push(`/users`);
   };
-  const { user } = useContext(CurrentUserContext);
+
+
+const {user} = useContext(CurrentUserContext)
   return (
     <Wrapper>
       <Container>
@@ -35,16 +38,20 @@ const Header = () => {
         <Title>GolfBuddy</Title>
 
         <RightSideButtons>
-          {user ? (
-            <NewPost
-              onClick={handleNewPostClick}
-              onKeyPress={handleNewPostClick}
-              tabIndex="0"
-            >
-              Post a game
-            </NewPost>
-          ) : (
-            <>
+        <UserProfile
+                onClick={handleUserProfilesClick}
+                onKeyPress={handleUserProfilesClick}
+                tabIndex="0"
+              >
+                UserProfiles
+              </UserProfile>
+          {user?<NewPost
+            onClick={handleNewPostClick}
+            onKeyPress={handleNewPostClick}
+            tabIndex="0"
+          >
+            Post a game
+          </NewPost> : (<>
               <SignUp
                 onClick={handleSignUpClick}
                 onKeyPress={handleSignUpClick}
@@ -59,8 +66,9 @@ const Header = () => {
               >
                 Sign in
               </SignIn>
-            </>
-          )}
+            </>)}
+          
+          
         </RightSideButtons>
       </Container>
     </Wrapper>
@@ -69,7 +77,7 @@ const Header = () => {
 
 const Wrapper = styled.div`
   box-shadow: 0 0 5px 0px rgb(0 0 0 / 0.5);
-  background-color: var(--color-elm);
+  background-color: #FF6164;
   border-radius: 0 0 3px 3px;
   margin: 10px;
 `;
@@ -79,7 +87,11 @@ const Container = styled.div`
   align-items: center;
   padding: 15px;
 `;
-const Title = styled.div``;
+const Title = styled.div`
+color: #008176;
+font-size: 40px;
+
+`;
 const HomeButton = styled.button`
   font-size: 30px;
   padding: 3px;
@@ -100,6 +112,19 @@ const RightSideButtons = styled.div`
 `;
 
 const NewPost = styled.button`
+  font-size: 30px;
+  padding: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color-moss-green);
+  color: var(--color-don-juan);
+  &:active {
+    background-color: var(--color-tahuna-sands);
+  }
+`;
+
+const UserProfile = styled.button`
   font-size: 30px;
   padding: 3px;
   border-radius: 10px;

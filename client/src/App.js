@@ -3,10 +3,12 @@ import styled from "styled-components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./components/GlobalStyles";
 import SignIn from "./components/SignIn";
+import HomePage from "./components/HomePage";
 
 import Header from "./components/Header";
 import SignUp from "./components/SignUp";
 import NewPost from "./components/NewPost";
+import UserProfiles from "./components/UserProfiles";
 
 
 function App() {
@@ -19,7 +21,7 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/">
-              Homepage
+              HomePage
             </Route>
 
             <Route path="/sign-in">
@@ -30,6 +32,10 @@ function App() {
             </Route>
             <Route exact path="/newpost">
               <NewPost />
+            </Route>
+            
+            <Route exact path="/users">
+              <UserProfiles />
             </Route>
             
           </Switch>
