@@ -43,7 +43,6 @@ const SignUp = () => {
           setUser(data.user);
           console.log(data);
           history.push(`/`);
-         
         } else if (data.status === 400) {
           setStatus("error");
           //setErrMessage(data.message);
@@ -110,15 +109,16 @@ const SignUp = () => {
           }}
         ></Input>
 
-        <Input
-          type="text"
-          placeholder="Gender"
-          required
-          value={gender}
+        <select
+          id="gender"
           onChange={(e) => {
             setGender(e.target.value);
           }}
-        ></Input>
+        >
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
 
         <Input
           type="text"
@@ -153,8 +153,7 @@ const SignUp = () => {
           )}
         </Div>
       </Container>
-      <UserCard/>
-    
+      <UserCard />
     </>
   );
 };
@@ -180,25 +179,21 @@ const Div = styled.div`
 `;
 
 const Button = styled.button`
- border: 1px solid;
+  border: 1px solid;
   background-color: transparent;
   text-transform: uppercase;
   font-size: 14px;
   padding: 10px 20px;
   font-weight: 300;
   border-radius: 5px;
-  height:5vh;
-  
+  height: 5vh;
+
   &&:hover {
-  background-color: #b9e769;
-  -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-  box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
-}
-
-
-
-
+    background-color: #b9e769;
+    -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  }
 `;
 
 export default SignUp;

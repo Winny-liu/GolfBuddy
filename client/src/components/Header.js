@@ -23,6 +23,10 @@ const Header = () => {
     history.push(`/users`);
   };
 
+  const handlePostProfilesClick = () => {
+    history.push(`/posts`);
+  };
+
 
 const {user} = useContext(CurrentUserContext)
   return (
@@ -38,6 +42,14 @@ const {user} = useContext(CurrentUserContext)
         <Title>GolfBuddy</Title>
 
         <RightSideButtons>
+
+        <PostProfile
+                onClick={handlePostProfilesClick}
+                onKeyPress={handlePostProfilesClick}
+                tabIndex="0"
+              >
+                PostProfiles
+              </PostProfile>
         <UserProfile
                 onClick={handleUserProfilesClick}
                 onKeyPress={handleUserProfilesClick}
@@ -124,6 +136,18 @@ const NewPost = styled.button`
   }
 `;
 
+const PostProfile = styled.button`
+  font-size: 30px;
+  padding: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: var(--color-moss-green);
+  color: var(--color-don-juan);
+  &:active {
+    background-color: var(--color-tahuna-sands);
+  }
+`;
 const UserProfile = styled.button`
   font-size: 30px;
   padding: 3px;

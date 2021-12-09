@@ -52,12 +52,10 @@ const addUser = async (req, res) => {
     let newUser = await db.collection("users").insertOne({ ...req.body });
     console.log(newUser);
     if (newUser.acknowledged && newUser.insertedId) {
-      return res
-        .status(201)
-        .json({
-          status: 201,
-          user: { name, email, age, gender, handicap, zipCode },
-        });
+      return res.status(201).json({
+        status: 201,
+        user: { name, email, age, gender, handicap, zipCode },
+      });
     } else {
       return res.status(500).json({
         status: "error",

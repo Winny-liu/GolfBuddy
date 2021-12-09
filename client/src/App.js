@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import SignUp from "./components/SignUp";
 import NewPost from "./components/NewPost";
 import UserProfiles from "./components/UserProfiles";
-
+import PostProfiles from "./components/PostProfiles";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -21,7 +21,7 @@ function App() {
           <Header />
           <Switch>
             <Route exact path="/">
-              HomePage
+              <HomePage />
             </Route>
 
             <Route path="/sign-in">
@@ -33,11 +33,13 @@ function App() {
             <Route exact path="/newpost">
               <NewPost />
             </Route>
-            
+
             <Route exact path="/users">
               <UserProfiles />
             </Route>
-            
+            <Route exact path="/posts">
+              <PostProfiles />
+            </Route>
           </Switch>
         </Main>
       </BrowserRouter>

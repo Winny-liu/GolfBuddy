@@ -1,23 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const FilterBar = ({
-  onGenderFilter,
-  onNameFilter,
-  onDateFilter,
-  onHandicapFilter,
-  onAgeFilter,
-}) => {
+const PostFilterBar = ({ onNameFilter, onDateFilter, onCourseFilter }) => {
   const [filters, setFilters] = useState({
     name: "",
-    gender: "",
     from: "",
     to: "",
-    handicap: "",
-    age: "",
+    course: "",
   });
 
-  const handleInput = (event, field ) => {
+  const handleInput = (event, field) => {
     const { value } = event.target;
 
     setFilters({
@@ -30,15 +22,10 @@ const FilterBar = ({
         onNameFilter(value);
         break;
 
-      case "gender":
-        onGenderFilter(value);
+      case "course":
+        onCourseFilter(value);
         break;
-      case "age":
-        onAgeFilter(value);
-        break;
-      case "handicap":
-        onHandicapFilter(value);
-        break;
+
       case "from":
         onDateFilter(value, "from");
         break;
@@ -61,48 +48,33 @@ const FilterBar = ({
             type="text"
             className="form"
             id="name"
-            //value={""}
-            onChange={(event)=>{handleInput(event,"name")}}
+            onChange={(event) => {
+              handleInput(event, "name");
+            }}
           />
         </Box>
 
         <Box>
-          <label htmlFor="gender">Gender</label>
-          <select id="gender" onChange={(event)=>{handleInput(event,"gender")}}>
-            <option>Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </Box>
-
-        <Box>
-          <label htmlFor="age">Age</label>
-          <input
-            type="age"
-            className="form"
-            id="age"
-            //value={""}
-            onChange={(event)=>{handleInput(event,"age")}}
-          />
-        </Box>
-        <Box>
-          <label htmlFor="handicap">Handicap</label>
+          <label htmlFor="course">Golf Course</label>
           <input
             type="text"
             className="form"
-            id="handicap"
-            //value={""}
-            //onChange={(event)=>{handleInput( event,"handicape")}}
+            id="course"
+            onChange={(event) => {
+              handleInput(event, "course");
+            }}
           />
         </Box>
+
         <Box>
           <label htmlFor="startDate">From</label>
           <input
             type="date"
             className="form"
             id="startDate"
-            //value={""}
-            //onChange={(event)=>{handleInput( event,"from")}}
+            onChange={(event) => {
+              handleInput(event, "from");
+            }}
           />
         </Box>
         <Box>
@@ -111,8 +83,9 @@ const FilterBar = ({
             type="date"
             className="to"
             id="endDate"
-           // value={""}
-            //onChange={(event)=>{handleInput( event,"to")}}
+            onChange={(event) => {
+              handleInput(event, "to");
+            }}
           />
         </Box>
       </Container>
@@ -125,4 +98,4 @@ const Container = styled.div``;
 const Box = styled.div``;
 const Title = styled.div``;
 
-export default FilterBar;
+export default PostFilterBar;

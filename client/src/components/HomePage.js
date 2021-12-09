@@ -2,71 +2,62 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import UserProfiles from "./UserProfiles";
+import PostProfiles from "./PostProfiles";
 
 const HomePage = () => {
-  //const [posts, setposts] = useState([]);
-  
-  const [users, setUsers] = useState([]);
-  const [usersStatus, setUsersStatus] = useState("loading");
-
-  const { user } = useContext(CurrentUserContext);
-
-  //const [start, setStart] = useState(0);
-
-  //let history = useHistory();
-
-  useEffect(() => {
-    // get all users
-    fetch(`/api/users`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data.data);
-        setUsersStatus("idle");
-      });
-  }, []);
-
   return (
-    <Container>
-      {users.map((user) => {
-        return (
-          <Wrapper key={user._id}>
-            <Image src={`${user.avatarUrl}`} />
+    <>
+    <Bigtitle>Golf is a easy game, just not easy to play! A good Partner definitly will Help!</Bigtitle>
+<Homewrapper>
+    <Postswrapper>
+      <PostProfiles/>
+      
+       </Postswrapper>
 
-            <Name>{user.name} </Name>
-          </Wrapper>
-        );
-      })}
-    </Container>
-  );
-};
+       <Userswrapper>
+         <UserProfiles/>
+       </Userswrapper>
+       </Homewrapper>
 
-const Wrapper = styled.div``;
+</>
+  )
+
+
+}
+
+const Bigtitle = styled.div`
+font-size: 30px;
+`;
 const Container = styled.div`
   display: flex;
   width: 500px;
   height: 500px;
   border: 2px solid;
 `;
-const CategoryContainer = styled.div`
+const Postswrapper = styled.div`
   display: flex;
-  padding: 20px;
-  width: 100vw;
+  width: 40vw;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-around;
-  margin: 60px;
+
+  
 `;
 
-const Name = styled.div`
-  font-size: 50px;
-  text-align: center;
+const Homewrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 `;
 
-const Image = styled.div`
-  width: 40vw;
-  margin: auto;
-  padding: 40px;
+const Userswrapper = styled.div`
+display: flex;
+  width: 60vw;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  
 `;
 
 export default HomePage;
