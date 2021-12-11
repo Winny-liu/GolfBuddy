@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import PostFilterBar from "./FilterBar";
+import PostFilterBar from "./PostFilterBar";
 import { PostsContext } from "./Contexts/PostsContext";
 
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");
@@ -37,11 +37,15 @@ function PostsFilter({ visiblePost, setVisiblePost }) {
 
   const handleFilterDate = (date, field) => {
     const filteredData = posts.filter((post) => {
+      console.log(post.date, date);
+
       if (field === "from" && dayjs(post.date).isSameOrAfter(dayjs(date))) {
+        console.log(date);
+
         return post;
       } else if (
         field === "to" &&
-        dayjs(post.date).isSameOrbefore(dayjs(date))
+        dayjs(post.date).isSameOrBefore(dayjs(date))
       ) {
         return post;
       }

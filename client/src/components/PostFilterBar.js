@@ -7,10 +7,12 @@ const PostFilterBar = ({ onNameFilter, onDateFilter, onCourseFilter }) => {
     from: "",
     to: "",
     course: "",
+    date: "",
   });
 
   const handleInput = (event, field) => {
     const { value } = event.target;
+    console.log(value);
 
     setFilters({
       ...filters,

@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-import UserProfiles from "./UserProfiles";
+
+import UserMap from "./UserMap";
 
 const Header = () => {
   let history = useHistory();
@@ -19,13 +20,8 @@ const Header = () => {
   const handleNewPostClick = () => {
     history.push(`/newpost`);
   };
-  const handleUserProfilesClick = () => {
-    history.push(`/users`);
-  };
-
-  const handlePostProfilesClick = () => {
-    history.push(`/posts`);
-  };
+ 
+  
 
 
 const {user} = useContext(CurrentUserContext)
@@ -43,20 +39,8 @@ const {user} = useContext(CurrentUserContext)
 
         <RightSideButtons>
 
-        <PostProfile
-                onClick={handlePostProfilesClick}
-                onKeyPress={handlePostProfilesClick}
-                tabIndex="0"
-              >
-                PostProfiles
-              </PostProfile>
-        <UserProfile
-                onClick={handleUserProfilesClick}
-                onKeyPress={handleUserProfilesClick}
-                tabIndex="0"
-              >
-                UserProfiles
-              </UserProfile>
+       
+        
           {user?<NewPost
             onClick={handleNewPostClick}
             onKeyPress={handleNewPostClick}
@@ -136,30 +120,7 @@ const NewPost = styled.button`
   }
 `;
 
-const PostProfile = styled.button`
-  font-size: 30px;
-  padding: 3px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color-moss-green);
-  color: var(--color-don-juan);
-  &:active {
-    background-color: var(--color-tahuna-sands);
-  }
-`;
-const UserProfile = styled.button`
-  font-size: 30px;
-  padding: 3px;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color-moss-green);
-  color: var(--color-don-juan);
-  &:active {
-    background-color: var(--color-tahuna-sands);
-  }
-`;
+
 
 const SignIn = styled.button`
   font-size: 30px;

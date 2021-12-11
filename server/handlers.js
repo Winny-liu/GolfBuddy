@@ -99,11 +99,12 @@ const getUser = async (req, res) => {
     console.log(user);
     user
       ? res.status(200).json({ status: 200, data: user })
-      : res.status(500).json({
-          status: 500,
+      : res.status(400).json({
+          status: 400,
           data: " user not exist",
         });
   } catch (err) {
+    console.log(err)
     res.status(500).json({
       status: 500,
       message: "Something went wrong, please try again later.",

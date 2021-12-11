@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import UserCard from "./UserCard";
-import FilterBar from "./FilterBar";
+import PostFilterBar from "./PostFilterBar";
 import UserProfiles from "./UserProfiles";
 
 const SignUp = () => {
@@ -154,6 +154,7 @@ const SignUp = () => {
         </Div>
       </Container>
       <UserCard />
+      
     </>
   );
 };

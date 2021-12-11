@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 
-
 const SignIn = () => {
   const { setUser } = useContext(CurrentUserContext);
   // Initial state of state variable inputData.
@@ -40,7 +39,7 @@ const SignIn = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log (res)
+        console.log(res);
         if (res.status === 200) {
           console.log(data);
           setUser(res.data);
@@ -99,6 +98,8 @@ const SignIn = () => {
 };
 
 const Wrapper = styled.div`
+  position: relative;
+  top: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -106,8 +107,8 @@ const Wrapper = styled.div`
   margin-left: auto;
   margin-right: auto;
   background-color: #b9e769;
-  width: 50vw;
-  height: 60vh;
+  width: 35vw;
+  height: 50vh;
   margin-top: 30px;
   margin-bottom: 30px;
   border-radius: 50px;

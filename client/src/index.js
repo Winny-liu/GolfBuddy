@@ -9,10 +9,8 @@ ReactDOM.render(
   <CurrentUserProvider>
     <UsersProvider>
       <PostsProvider>
-      
         <App />
-        </PostsProvider>
-      
+      </PostsProvider>
     </UsersProvider>
   </CurrentUserProvider>,
   document.getElementById("root")
