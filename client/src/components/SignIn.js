@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
+import background2 from "../assets/background2.jpg";
 
 const SignIn = () => {
   const { setUser } = useContext(CurrentUserContext);
@@ -59,44 +60,53 @@ const SignIn = () => {
   }
 
   return (
-    <Wrapper>
-      <Title>Sign In</Title>
+    <>
+      <Img src={background2} />
+      <Wrapper>
+        <Title>Sign In</Title>
 
-      <Form onSubmit={handleClick}>
-        <Container>
-          <Input
-            type="email"
-            placeholder="Email Address "
-            name="email"
-            onChange={(ev) => {
-              setInputData({ ...inputData, email: ev.target.value });
-            }}
-          />
+        <Form onSubmit={handleClick}>
+          <Container>
+            <Input
+              type="email"
+              placeholder="Email Address "
+              name="email"
+              onChange={(ev) => {
+                setInputData({ ...inputData, email: ev.target.value });
+              }}
+            />
 
-          <Input
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={(ev) => {
-              setInputData({ ...inputData, password: ev.target.value });
-            }}
-          />
-        </Container>
-        <Div>
-          <Button type="reset">Clear</Button>
-          {readyToSubmit ? (
-            <Button type="submit">Confirm</Button>
-          ) : (
-            <Button type="submit" disabled>
-              Confirm
-            </Button>
-          )}
-        </Div>
-      </Form>
-    </Wrapper>
+            <Input
+              type="password"
+              placeholder="Password"
+              name="password"
+              onChange={(ev) => {
+                setInputData({ ...inputData, password: ev.target.value });
+              }}
+            />
+          </Container>
+          <Div>
+            <Button type="reset">Clear</Button>
+            {readyToSubmit ? (
+              <Button type="submit">Confirm</Button>
+            ) : (
+              <Button type="submit" disabled>
+                Confirm
+              </Button>
+            )}
+          </Div>
+        </Form>
+      </Wrapper>
+    </>
   );
 };
-
+const Img = styled.img`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+`;
 const Wrapper = styled.div`
   position: relative;
   top: 60px;
@@ -106,36 +116,38 @@ const Wrapper = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  background-color: #b9e769;
-  width: 35vw;
-  height: 50vh;
+  background-color: #008176;
+
+  width: 25vw;
+  height: 45vh;
   margin-top: 30px;
   margin-bottom: 30px;
   border-radius: 50px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
 `;
 const Title = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 50px;
+  font-size: 35px;
   font-weight: bolder;
   color: white;
+  margin-top:20px;
 `;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: right;
-  margin: 40px;
+
   position: relative;
-  padding: 24px;
-  background-color: #e1eec7;
-  width: 450px;
-  padding: 24px;
-  margin-top: 32px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    0 100px 80px rgba(0, 0, 0, 0.07);
+
+  width: 250px;
+
+  margin-top: 20px;
+
   border-radius: 16px;
   font-size: 15px;
 `;
@@ -146,27 +158,29 @@ const Input = styled.input`
   border: #d2d2d2 1px solid;
   border-radius: 4px;
   margin: 10px;
+  position: relative;
+  right: 33px;
 
-  padding: 15px;
-  height: 30px;
-  width: 380px;
+  height: 40px;
+  width: 300px;
 `;
 
 const Button = styled.button`
+  margin: 10px;
+  font-size: 20px;
+  padding: 5px;
+
   display: flex;
   text-align: center;
   align-items: center;
-  height: 20px;
-  width: 100px;
-  padding: 10px 20px;
-  border: 1px solid #008176;
-  background-color: transparent;
-  text-transform: uppercase;
-  font-size: 14px;
 
-  font-weight: 300;
+  border: 1px solid #008176;
+  background-color: #ff6164;
+
+  position: relative;
+  margin: 30px 50px 30px 50px;
+
   border-radius: 5px;
-  height: 5vh;
 
   &&:hover {
     background-color: #b9e769;

@@ -20,11 +20,8 @@ const Header = () => {
   const handleNewPostClick = () => {
     history.push(`/newpost`);
   };
- 
-  
 
-
-const {user} = useContext(CurrentUserContext)
+  const { user } = useContext(CurrentUserContext);
   return (
     <Wrapper>
       <Container>
@@ -38,16 +35,16 @@ const {user} = useContext(CurrentUserContext)
         <Title>GolfBuddy</Title>
 
         <RightSideButtons>
-
-       
-        
-          {user?<NewPost
-            onClick={handleNewPostClick}
-            onKeyPress={handleNewPostClick}
-            tabIndex="0"
-          >
-            Post a game
-          </NewPost> : (<>
+          {user ? (
+            <NewPost
+              onClick={handleNewPostClick}
+              onKeyPress={handleNewPostClick}
+              tabIndex="0"
+            >
+              Post a game
+            </NewPost>
+          ) : (
+            <>
               <SignUp
                 onClick={handleSignUpClick}
                 onKeyPress={handleSignUpClick}
@@ -62,9 +59,8 @@ const {user} = useContext(CurrentUserContext)
               >
                 Sign in
               </SignIn>
-            </>)}
-          
-          
+            </>
+          )}
         </RightSideButtons>
       </Container>
     </Wrapper>
@@ -73,9 +69,10 @@ const {user} = useContext(CurrentUserContext)
 
 const Wrapper = styled.div`
   box-shadow: 0 0 5px 0px rgb(0 0 0 / 0.5);
-  background-color: #FF6164;
+
   border-radius: 0 0 3px 3px;
   margin: 10px;
+  border-radius: 20px;
 `;
 const Container = styled.div`
   display: flex;
@@ -84,31 +81,36 @@ const Container = styled.div`
   padding: 15px;
 `;
 const Title = styled.div`
-color: #008176;
-font-size: 40px;
 
+  font-size: 10rem;
+  text-align: center;
+
+
+  color: black;
+  font-size: 40px;
+  font-weight: 800;
 `;
 const HomeButton = styled.button`
-  font-size: 30px;
-  padding: 3px;
-  border-radius: 3px;
+  margin: 10px;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
-  background-color: var(--color-moss-green);
   color: var(--color-don-juan);
   &:active {
-    background-color: var(--color-tahuna-sands);
+    background-color: #ff6164;
   }
 `;
 
 const RightSideButtons = styled.div`
-  font-size: 30px;
+  font-size: 20px;
   display: flex;
   align-items: center;
 `;
 
 const NewPost = styled.button`
-  font-size: 30px;
+  font-size: 20px;
   padding: 3px;
   border-radius: 10px;
   cursor: pointer;
@@ -116,35 +118,33 @@ const NewPost = styled.button`
   background-color: var(--color-moss-green);
   color: var(--color-don-juan);
   &:active {
-    background-color: var(--color-tahuna-sands);
+    background-color: #ff6164;
   }
 `;
 
-
-
 const SignIn = styled.button`
-  font-size: 30px;
-  padding: 3px;
+ margin: 10px;
+  font-size: 20px;
+  padding: 5px;
   border-radius: 10px;
   cursor: pointer;
   border: none;
-  background-color: var(--color-moss-green);
   color: var(--color-don-juan);
   &:active {
-    background-color: var(--color-tahuna-sands);
+    background-color: #ff6164;
   }
 `;
 
 const SignUp = styled.button`
-  font-size: 30px;
-  padding: 3px;
-  border-radius: 3px;
+ margin: 10px;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 10px;
   cursor: pointer;
   border: none;
-  background-color: var(--color-moss-green);
   color: var(--color-don-juan);
   &:active {
-    background-color: var(--color-tahuna-sands);
+    background-color: #ff6164;
   }
 `;
 

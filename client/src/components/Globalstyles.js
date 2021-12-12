@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyles = createGlobalStyle`
 :root {
     --color-don-juan: #008176;
-    --color-keppel:#b9e769
+    --color-keppel:#b9e769;
     --color-moss-green: #E1EEC7;
     --color-tahuna-sands: #FCFCFC;
     --color-elm: #FF6164;
@@ -19,8 +19,9 @@ const GlobalStyles = createGlobalStyle`
       h1, h2, h3, h4, h5, h6, p,
       text {
           
-          font-family: "Poppins",sans-serif;
+          font-family: Garamond, serif;
           color:#008176 ;
+          
       }
   
       html, body {

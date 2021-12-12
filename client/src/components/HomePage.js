@@ -4,7 +4,7 @@ import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import UserProfiles from "./UserProfiles";
 import PostProfiles from "./PostProfiles";
-import golfleft from "../assets/golfleft.jpg";
+import background from "../assets/background.jpg";
 
 import { useHistory } from "react-router-dom";
 
@@ -20,11 +20,13 @@ const HomePage = () => {
 
   return (
     <>
+      <Img src={background} />
       <Container>
         <WrapperLeft>
           <Bigtitle>
-            Golf is a easy game, just not easy to play! A good Partner definitly
-            will Help!
+            <Div> Golf is a easy game, </Div>
+            <Div>just not easy to play! </Div>
+            <Div> A good Partner definitly will Help!</Div>
           </Bigtitle>
 
           <UserProfile
@@ -37,7 +39,10 @@ const HomePage = () => {
         </WrapperLeft>
 
         <WrapperRight>
-          <Bigtitle>Too busy to book a game? No idea where to play?</Bigtitle>
+          <Bigtitle>
+            <Div> Too busy to book a game? </Div>
+            <Div> No idea where to play? </Div>
+          </Bigtitle>
 
           <PostProfile
             onClick={handlePostProfilesClick}
@@ -51,90 +56,84 @@ const HomePage = () => {
     </>
   );
 };
+const Img = styled.img`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  filter: grayscale(0.3);
+`;
+const Div = styled.div`
+  color: white;
+  margin: 10px;
+`;
 
 const Bigtitle = styled.div`
-  font-size: 30px;
-  padding: 40px;
+
+display: flex;
+flex-direction: column;
+  font-size: 25px;
+  padding: 20px;
+  color: pink;
+  width:500px;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  
+  background-color: #FF6164 opacity: 0.4;
+
+  ;
 `;
 const Container = styled.div`
   box-sizing: border-box;
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   width: 100vw;
   height: 100vh;
-  border: 2px solid;
-`;
-const Postswrapper = styled.div`
-  display: flex;
-  width: 40vw;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 `;
 
 const WrapperLeft = styled.div`
- left: 0;
-  
-  background-Image:"url(${golfleft.jpg}}";
-  background-size: cover;
-
-
-  display: flex;
-  width: 60vw;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  background-color:green ;
 
-  :before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  height: 300px;
+  border: 2px solid white;
+  margin: 200px;
+
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+
+  flex-wrap: wrap;
 `;
 
 const WrapperRight = styled.div`
-  display: flex;
-  width: 60vw;
   justify-content: center;
   align-items: center;
+
+  height: 300px;
+  border: 2px solid white;
+  margin: 200px;
+
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+
   flex-wrap: wrap;
-  right: 0;
-  background: url('golfright.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  :before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transition: all var(--speed) ease-in-out;
-  .hover {
-  width: var(--hover-width);
-  
 `;
 const PostProfile = styled.button`
+  border: 2px solid white;
   font-size: 30px;
   padding: 3px;
   border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color-moss-green);
-  color: var(--color-don-juan);
-  &:active {
-    background-color: var(--color-tahuna-sands);
-  }
 `;
 const UserProfile = styled.button`
+  border: 2px solid white;
   font-size: 30px;
   padding: 3px;
   border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  background-color: var(--color-moss-green);
-  color: var(--color-don-juan);
-  &:active {
-    background-color: var(--color-tahuna-sands);
-  }
 `;
 
 export default HomePage;

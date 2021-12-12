@@ -17,7 +17,7 @@ const FilterBar = ({
     age: "",
   });
 
-  const handleInput = (event, field ) => {
+  const handleInput = (event, field) => {
     const { value } = event.target;
 
     setFilters({
@@ -62,13 +62,20 @@ const FilterBar = ({
             className="form"
             id="name"
             //value={""}
-            onChange={(event)=>{handleInput(event,"name")}}
+            onChange={(event) => {
+              handleInput(event, "name");
+            }}
           />
         </Box>
 
         <Box>
           <label htmlFor="gender">Gender</label>
-          <select id="gender" onChange={(event)=>{handleInput(event,"gender")}}>
+          <select
+            id="gender"
+            onChange={(event) => {
+              handleInput(event, "gender");
+            }}
+          >
             <option>Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -82,7 +89,9 @@ const FilterBar = ({
             className="form"
             id="age"
             //value={""}
-            onChange={(event)=>{handleInput(event,"age")}}
+            onChange={(event) => {
+              handleInput(event, "age");
+            }}
           />
         </Box>
         <Box>
@@ -111,7 +120,7 @@ const FilterBar = ({
             type="date"
             className="to"
             id="endDate"
-           // value={""}
+            // value={""}
             //onChange={(event)=>{handleInput( event,"to")}}
           />
         </Box>
@@ -121,7 +130,21 @@ const FilterBar = ({
 };
 
 const Wrapper = styled.div``;
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff6164;
+  margin: 10px;
+  border-radius: 20px;
+  font-size: 20px;
+  height: 50vh;
+  width: 400px;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+`;
 const Box = styled.div``;
 const Title = styled.div``;
 

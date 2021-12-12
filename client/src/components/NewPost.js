@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { useHistory } from "react-router";
 import UserProfiles from "./UserProfiles";
-
+import background3 from "../assets/background3.jpg";
 //const CurrentUser = sessionStorage.getItem("signInUser");
 
 const NewPost = () => {
@@ -63,58 +63,62 @@ const NewPost = () => {
 
   return (
     <>
-      <Container onSubmit={handleSubmit}>
-        <Box>
-          <Label htmlFor="golfCourse">Golf Course: </Label>
-          <Input
-            type="text"
-            placeholder="GolfCourse"
-            required
-            value={golfCourse}
-            onChange={(e) => {
-              setGolfCourse(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <Label htmlFor="teeTime">TeeTime: </Label>
-          <Input
-            type="time"
-            placeholder="TeeTime"
-            required
-            value={teeTime}
-            onChange={(e) => {
-              setTeeTime(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <Label htmlFor="date">Date: </Label>
-          <Input
-            type="date"
-            placeholder="Date"
-            required
-            value={date}
-            onChange={(e) => {
-              setDate(e.target.value);
-            }}
-          />
-        </Box>
-        <Box>
-          <Label htmlFor="description">Description: </Label>
-          <Input
-            type="text"
-            placeholder="Description"
-            required
-            value={description}
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          />
-        </Box>
+      <Img src={background3} />
+      <Wrapper1>
+        <Title>New Post</Title>
+        <Container onSubmit={handleSubmit}>
+          <Box>
+            <Label htmlFor="golfCourse">Golf Course: </Label>
+            <Input
+              type="text"
+              placeholder="GolfCourse"
+              required
+              value={golfCourse}
+              onChange={(e) => {
+                setGolfCourse(e.target.value);
+              }}
+            />
+          </Box>
+          <Box>
+            <Label htmlFor="teeTime">TeeTime: </Label>
+            <Input
+              type="time"
+              placeholder="TeeTime"
+              required
+              value={teeTime}
+              onChange={(e) => {
+                setTeeTime(e.target.value);
+              }}
+            />
+          </Box>
+          <Box>
+            <Label htmlFor="date">Date: </Label>
+            <Input
+              type="date"
+              placeholder="Date"
+              required
+              value={date}
+              onChange={(e) => {
+                setDate(e.target.value);
+              }}
+            />
+          </Box>
+          <Box>
+            <Label htmlFor="description">Description: </Label>
+            <Input
+              type="text area"
+              placeholder="Description"
+              required
+              value={description}
+              onChange={(e) => {
+                setDescription(e.target.value);
+              }}
+            />
+          </Box>
 
-        <Button type="submit">Submit</Button>
-      </Container>
+          <Button type="submit">Submit</Button>
+        </Container>
+      </Wrapper1>
       {currentPost.map((post) => {
         return (
           <Wrapper key={post._id}>
@@ -139,13 +143,52 @@ const NewPost = () => {
   );
 };
 
-const Container = styled.form`
+const Img = styled.img`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+`;
+
+const Wrapper1 = styled.div`
   display: flex;
   flex-direction: column;
+`;
+const Title = styled.div`
+  display: flex;
+  justify-content: right;
+  font-size: 35px;
+  font-weight: bolder;
+  color: white;
+  margin-top: 20px;
+  margin-right: 140px;
+  z-index: 2;
+`;
+
+const Container = styled.form`
+  position: absolute;
+  right: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-  border-radius: 5px;
-  border: solid var(--color-alabama-crimson);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #008176;
+  padding-top: 100px;
+
+  width: 25vw;
+  height: 70vh;
+
+  margin-bottom: 30px;
+  border-radius: 50px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
 `;
 const Date = styled.div``;
 const Time = styled.div``;
@@ -155,26 +198,55 @@ const Description = styled.div``;
 
 const Box = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: right;
   align-items: center;
 `;
 
 const Label = styled.label`
-  margin: 20px;
+  margin: 0px;
+  position: relative;
+  left: -120px;
+  color: white;
+  font-size: 20px;
 `;
 const Input = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: #d2d2d2 1px solid;
+  border-radius: 4px;
+  margin: 10px;
+  position: relative;
+  right: 0px;
+
+  height: 40px;
   width: 300px;
-  margin-bottom: 5px;
 `;
 
 const Button = styled.button`
-  margin-top: 5px;
-  cursor: pointer;
-  background: var(--color-alabama-crimson);
-  border: none;
-  color: var(--color-selective-yellow);
+  margin: 10px;
+  font-size: 20px;
+  padding: 5px;
+
+  display: flex;
+  text-align: center;
+  align-items: center;
+
+  border: 1px solid #008176;
+  background-color: #ff6164;
+
+  position: relative;
+  margin: 30px 50px 30px 50px;
+
   border-radius: 5px;
+
+  &&:hover {
+    background-color: #b9e769;
+    -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  }
 `;
 const Wholewrap = styled.div`
   display: flex;

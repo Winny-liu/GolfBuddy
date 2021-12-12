@@ -119,7 +119,8 @@ const Container = styled.div`
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  margin: 5%;
+  margin: 10%;
+  
 `;
 
 const Box = styled.div`
