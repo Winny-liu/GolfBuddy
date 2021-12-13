@@ -121,22 +121,24 @@ const NewPost = () => {
       </Wrapper1>
       {currentPost.map((post) => {
         return (
+          <Wholewrap>
           <Wrapper key={post._id}>
             <Boxup>
               <Date>Date:{post.date}</Date>
               <Time>TeeTime: {post.teeTime}</Time>
+              <Course>Golf Course: {post.golfCourse}</Course>
             </Boxup>
 
+            <Description>Description</Description>
             <Description>{post.description}</Description>
 
             <Boxdown>
               <Name>Name: {post.name} </Name>
-              <Course>Golf Course: {post.golfCourse}</Course>
 
               <Email>Email: {post.email}</Email>
-              <Description></Description>
             </Boxdown>
           </Wrapper>
+          </Wholewrap>
         );
       })}
     </>
@@ -194,7 +196,13 @@ const Date = styled.div``;
 const Time = styled.div``;
 const Name = styled.div``;
 const Email = styled.div``;
-const Description = styled.div``;
+
+const Description = styled.div`
+display: flex;
+flex-wrap:wrap;
+height: 150px;
+width: 200px;
+`;
 
 const Box = styled.div`
   display: flex;
@@ -250,47 +258,47 @@ const Button = styled.button`
 `;
 const Wholewrap = styled.div`
   display: flex;
+  flex-direction: row;
+  width:400px;
+  margin-top: 0;
+  flex-wrap:wrap;
+  align-items:center;
+
+
+
+
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 50px;
-
+  margin: 25px;
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 300px;
   border-radius: 20px;
   background-color: white;
 `;
 
 const Course = styled.div`
   position: relative;
-  top: 0;
-
-  width: 100;
-  height: 100;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
+  font-size: 20px;
 `;
 
-const Age = styled.div``;
 
 const Boxup = styled.div`
   display: flex;
   flex-direction: column;
-
   position: relative;
   top: 0px;
-
-  height: 90px;
-  background-color: #b9e769;
+  height: 100px;
+  background-color: #ff6164;
   bottom: 0;
   width: 100%;
-
   padding: 15px;
-  font-size: 30px;
+  font-size: 25px;
+  font-weight: bolder;
   bottom: 0px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -299,15 +307,14 @@ const Boxup = styled.div`
 const Boxdown = styled.div`
   display: flex;
   flex-direction: column;
-
+  font-size: 25px;
   position: relative;
-  top: 75px;
+  
 
-  height: 90px;
+  height: 50px;
   background-color: #b9e769;
   bottom: 0;
   width: 100%;
-
   padding: 15px;
   font-size: 10px;
   bottom: 0px;

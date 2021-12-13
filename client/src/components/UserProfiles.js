@@ -2,9 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { CircularProgress } from "@mui/material";
 import { UsersContext } from "./Contexts/UsersContext";
-import golfball from "../assets/golfball.jpg";
+
 import UsersFilter from "./UsersFilter";
-//import UsersFilter from "./UsersFilter";
 
 const UserProfiles = () => {
   const { users, usersStatus } = useContext(UsersContext);
@@ -34,7 +33,7 @@ const UserProfiles = () => {
                 <Wrapper key={user._id}>
                   <Name>{user.name} </Name>
                   <Img src={user.avatar} />
-                  <Teetop></Teetop>
+
                   <Tee></Tee>
                   <Box>
                     <Gender>Gender: {user.gender}</Gender>
@@ -74,29 +73,19 @@ const Wrapper = styled.div`
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 200px;
-  height: 300px;
+  height: 280px;
   border-radius: 20px;
-  background-color: #b9e769;
+  background-color: #ff6164;
 `;
 const Name = styled.div`
   display: flex;
   position: relative;
-  margin: 15px;
+  margin: 5px;
   padding-bottom: 5px;
   font-size: 20px;
   color: white;
 `;
 
-const Teetop = styled.div`
-  position: relative;
-  top: 0;
-
-  width: 100;
-  height: 100;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
-  background-color: red;
-`;
 const Tee = styled.div`
   width: 15px;
   height: 120px;
@@ -105,6 +94,8 @@ const Tee = styled.div`
 `;
 const Wholewrap = styled.div`
   display: flex;
+
+  margin-left: ;
 `;
 const Filter = styled.div``;
 const Email = styled.div``;
@@ -119,8 +110,8 @@ const Container = styled.div`
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  margin: 10%;
-  
+  width: 75vw;
+  margin-top: 0;
 `;
 
 const Box = styled.div`

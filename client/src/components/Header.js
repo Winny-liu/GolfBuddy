@@ -10,6 +10,10 @@ const Header = () => {
   const handleHomePageClick = () => {
     history.push(`/`);
   };
+
+  const handleUserMapClick = () => {
+    history.push(`/usermap`);
+  };
   const handleSignInClick = () => {
     history.push(`/sign-in`);
   };
@@ -45,6 +49,14 @@ const Header = () => {
             </NewPost>
           ) : (
             <>
+             <Usermap
+                onClick={handleUserMapClick}
+                onKeyPress={handleUserMapClick}
+                tabIndex="0"
+              >
+                Buddy Map
+                
+              </Usermap>
               <SignUp
                 onClick={handleSignUpClick}
                 onKeyPress={handleSignUpClick}
@@ -110,12 +122,37 @@ const RightSideButtons = styled.div`
 `;
 
 const NewPost = styled.button`
+  margin: 10px;
   font-size: 20px;
-  padding: 3px;
+  padding: 5px;
+
+  display: flex;
+  text-align: center;
+  align-items: center;
+
+  border: 1px solid #008176;
+  background-color: #ff6164;
+
+  position: relative;
+ 
+
+  border-radius: 5px;
+
+  &&:hover {
+    background-color: #b9e769;
+    -webkit-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    -moz-box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+    box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
+  }
+`;
+
+const Usermap = styled.button`
+ margin: 10px;
+  font-size: 20px;
+  padding: 5px;
   border-radius: 10px;
   cursor: pointer;
   border: none;
-  background-color: var(--color-moss-green);
   color: var(--color-don-juan);
   &:active {
     background-color: #ff6164;

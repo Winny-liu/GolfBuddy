@@ -56,8 +56,8 @@ const FilterBar = ({
       <Container>
         <Title>Filters</Title>
         <Box>
-          <label htmlFor="name">Name</label>
-          <input
+          <Label htmlFor="name">Name</Label>
+          <Input
             type="text"
             className="form"
             id="name"
@@ -69,7 +69,7 @@ const FilterBar = ({
         </Box>
 
         <Box>
-          <label htmlFor="gender">Gender</label>
+          <Label htmlFor="gender">Gender</Label>
           <select
             id="gender"
             onChange={(event) => {
@@ -83,8 +83,8 @@ const FilterBar = ({
         </Box>
 
         <Box>
-          <label htmlFor="age">Age</label>
-          <input
+          <Label htmlFor="age">Age</Label>
+          <Input
             type="age"
             className="form"
             id="age"
@@ -95,33 +95,13 @@ const FilterBar = ({
           />
         </Box>
         <Box>
-          <label htmlFor="handicap">Handicap</label>
-          <input
+          <Label htmlFor="handicap">Handicap</Label>
+          <Input
             type="text"
             className="form"
             id="handicap"
             //value={""}
-            //onChange={(event)=>{handleInput( event,"handicape")}}
-          />
-        </Box>
-        <Box>
-          <label htmlFor="startDate">From</label>
-          <input
-            type="date"
-            className="form"
-            id="startDate"
-            //value={""}
-            //onChange={(event)=>{handleInput( event,"from")}}
-          />
-        </Box>
-        <Box>
-          <label htmlFor="endDate">To</label>
-          <input
-            type="date"
-            className="to"
-            id="endDate"
-            // value={""}
-            //onChange={(event)=>{handleInput( event,"to")}}
+            onChange={(event)=>{handleInput( event,"handicape")}}
           />
         </Box>
       </Container>
@@ -131,21 +111,58 @@ const FilterBar = ({
 
 const Wrapper = styled.div``;
 const Container = styled.div`
+  position: absolute;
+  top: 95px;
+  right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ff6164;
-  margin: 10px;
-  border-radius: 20px;
-  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #008176;
+
+  width: 20vw;
   height: 50vh;
-  width: 400px;
-  color: white;
-  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 50px;
+  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    0 100px 80px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
+`;
+const Input = styled.input`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: #d2d2d2 1px solid;
+  border-radius: 4px;
   margin: 10px;
+  position: relative;
+  right: 0px;
+
+  height: 40px;
+  width: 200px;
 `;
 const Box = styled.div``;
-const Title = styled.div``;
+
+const Label = styled.div`
+  margin: 0px;
+  position: relative;
+
+  color: white;
+  font-size: 20px;
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  font-size: 35px;
+  font-weight: bolder;
+  color: white;
+  margin-top: 10px;
+`;
 
 export default FilterBar;

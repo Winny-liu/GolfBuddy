@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useCallback } from "react";
 import styled from "styled-components";
 import { UsersContext } from "./Contexts/UsersContext";
 import {
@@ -30,41 +30,19 @@ const UserMap = () => {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState();
-  const { users, usersStatus } = useContext(UsersContext);
-  const [zipCodeUser, setZipCodeUser] = useState(users);
+  const [markers, setMarkers] = useState([]);
+  const [selected, setSelected] = useState();
 
-  useEffect(() => {
-    fetch(`/api/users`)
-      .then((res) => res.json())
-      .then((data) => {
-        setZipCodeUser(data.data);
-      });
+  console.log(isLoaded, loadError);
+  const onMapClick = useCallback((event) => {
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      },
+    ]);
   }, []);
-
-  console.log(users);
-
-  //const address = `${ user:zipCode }`
-  Geocode.fromAddress("address").then(
-    (response) => {
-      const { lat, lng } = response.results[0].geometry.location;
-      console.log(lat, lng);
-    },
-    (error) => {
-      console.error(error);
-    }
-  );
-  //console.log(isLoaded, loadError);
-  //const onMapClick = React.useCallback((event) => {
-  // setMarkers((current) => [
-  //...current,
-  // {
-  // lat: event.latLng.lat(),
-  //  lng: event.latLng.lng(),
-  // },
-  //]);
-  //}, []);
 
   // const mapRef = React.useRef();
   //const onMapLoad = React.useCallback((map) => {
@@ -79,23 +57,34 @@ const UserMap = () => {
       zoom={10}
       center={center}
       //options={options}
-      // onClick={(event) => {
-      // setMarkers((current) => [
-      //  ...current,
-      //  {
-      //   lat: event.latLng.lat(),
-      //   lng: event.latLng.lng(),
-      // },
-      // ]);
-      // }}
-      // onLoad={onMapLoad}
+      onClick={(event) => {
+        setMarkers((current) => [
+          ...current,
+          {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+          },
+        ]);
+      }}
+      //onLoad={onMapLoad}
     >
-      {/*{markers.map((marker) => (
+      <Marker position={{ lat: 45.510554517171755, lng: -73.23880881420823 }} />
+      <Marker position={{ lat: 45.64320516901253, lng: -73.35965842358323 }} />
+      <Marker position={{ lat: 45.5423038370318, lng: -73.5999843513176 }} />
+      <Marker position={{ lat: 45.39398705428811, lng: -73.39811057202073 }} />
+      <Marker position={{ lat: 45.269447284136945, lng: -73.57663840405198 }} />
+      <Marker position={{ lat: 45.52306396313225, lng: -73.42832297436448 }} />
+      <Marker position={{ lat: 45.47782436103669, lng: -73.43793601147385 }} />
+      <Marker position={{ lat: 45.53076070078878, lng: -73.61234397045823 }} />
+      <Marker position={{ lat: 45.57980264702181, lng: -73.7043544685051 }} />
+
+      {markers.map((marker) => (
         <Marker
-          //position={{ lat: marker.lat, lng: marker.lng }}
+          position={{ lat: marker.lat, lng: marker.lng }}
           //icon={{ url: "" }}
           onClick={() => {
             setSelected(marker);
+            console.log(marker);
           }}
         />
       ))}
@@ -110,7 +99,7 @@ const UserMap = () => {
             <h2>Hello Buddy!</h2>
           </div>
         </InfoWindow>
-        ) : null}*/}
+      ) : null}
     </GoogleMap>
   );
 };

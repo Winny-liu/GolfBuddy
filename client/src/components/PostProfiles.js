@@ -31,22 +31,24 @@ const PostProfiles = () => {
       {visiblePost &&
         visiblePost.map((post) => {
           return (
-            <Wrapper key={post._id}>
-              <Boxup>
-                <Date>Date:{post.date}</Date>
-                <Time>TeeTime: {post.teeTime}</Time>
-              </Boxup>
+        
+          <Wrapper key={post._id}>
+            <Boxup>
+              <Date>Date:{post.date}</Date>
+              <Time>TeeTime: {post.teeTime}</Time>
+              <Course>Course: {post.golfCourse}</Course>
+            </Boxup>
 
-              <Description>{post.description}</Description>
+            <Description>Description</Description>
+            <Description>{post.description}</Description>
 
-              <Boxdown>
-                <Name>Name: {post.name} </Name>
-                <Course>Golf Course: {post.golfCourse}</Course>
+            <Boxdown>
+              <Name>Name: {post.name} </Name>
 
-                <Email>Email: {post.email}</Email>
-                <Description></Description>
-              </Boxdown>
-            </Wrapper>
+              <Email>Email: {post.email}</Email>
+            </Boxdown>
+          </Wrapper>
+          
           );
         })}
     </Container>
@@ -60,91 +62,103 @@ const PostProfiles = () => {
 };
 
 const Wholewrap = styled.div`
-  display: flex;
+display: flex;
+
+margin-left: ;
+
 `;
 
 
 const Wrapper = styled.div`
-  display: flex;
+   display: flex;
   flex-direction: column;
-  margin: 50px;
+  margin: 20px;
 
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 300px;
-  height: 400px;
+  height: 280px;
   border-radius: 20px;
   background-color: white;
 `;
 const Name = styled.div`
-  display: flex;
-  position: relative;
-  margin: 15px;
-  padding-bottom: 5px;
-  font-size: 20px;
-  color: red;
+  
+  
 `;
 
 const Course = styled.div`
   position: relative;
-  top: 0;
-
-  width: 100;
-  height: 100;
-  border-left: 50px solid transparent;
-  border-right: 50px solid transparent;
+  font-size: 20px;
 `;
-
 const Email = styled.div``;
 const Date = styled.div``;
 const Time = styled.div``;
-const Description = styled.div``;
+const Description = styled.div`
+height: 150px;
+`;
 const Age = styled.div``;
 
-const Container = styled.div`
+
+const Wrapper1 = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Title = styled.div`
+  display: flex;
+  justify-content: right;
+  font-size: 35px;
+  font-weight: bolder;
+  color: white;
+  margin-top: 20px;
+  margin-right: 140px;
+  z-index: 2;
+`;
+
+const Container = styled.form`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  margin: 5%;
+  width: 75vw;
+  margin-top: 0;
 `;
+
 
 const Boxup = styled.div`
   display: flex;
   flex-direction: column;
-
   position: relative;
   top: 0px;
-
-  height: 90px;
-  background-color: #b9e769;
+  height: 100px;
+  background-color: #ff6164;
   bottom: 0;
   width: 100%;
-
   padding: 15px;
-  font-size: 30px;
+  font-size: 20px;
+  font-weight: bolder;
   bottom: 0px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  
 `;
 
 const Boxdown = styled.div`
-  display: flex;
+   display: flex;
   flex-direction: column;
-
+  font-size: 25px;
   position: relative;
-  top: 75px;
+  
 
-  height: 90px;
+  height: 50px;
   background-color: #b9e769;
   bottom: 0;
   width: 100%;
-
   padding: 15px;
   font-size: 10px;
   bottom: 0px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+
 `;
 
 export default PostProfiles;
