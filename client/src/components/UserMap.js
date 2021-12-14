@@ -8,15 +8,17 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import zIndex from "@mui/material/styles/zIndex";
-//import { formatRelative } from "date-fns";
+
 //import "@reach/combobox/styles.css";
 import Geocode from "react-geocode";
+import mapStyles from "../data/mapStyles";
+import golficon from "../assets/golficon.png";
+
 Geocode.setLanguage("en");
 
-const libraries = ["places"];
 const mapContainerStyle = {
-  width: "100vw",
-  height: "100vh",
+  width: "50vw",
+  height: "50vh",
 };
 
 const center = { lat: 45.5017, lng: -73.5673 };
@@ -28,10 +30,10 @@ const options = {
 const UserMap = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
   });
   const [markers, setMarkers] = useState([]);
-  const [selected, setSelected] = useState();
+
+  const [location, setLocation] = useState();
 
   console.log(isLoaded, loadError);
   const onMapClick = useCallback((event) => {
@@ -54,9 +56,9 @@ const UserMap = () => {
   return (
     <GoogleMap
       mapContainerStyle={mapContainerStyle}
-      zoom={10}
+      zoom={11}
       center={center}
-      //options={options}
+      options={{ styles: mapStyles }}
       onClick={(event) => {
         setMarkers((current) => [
           ...current,
@@ -66,33 +68,23 @@ const UserMap = () => {
           },
         ]);
       }}
-      //onLoad={onMapLoad}
+      //onLoad={onMapLoad}*/}
     >
-      <Marker position={{ lat: 45.510554517171755, lng: -73.23880881420823 }} />
-      <Marker position={{ lat: 45.64320516901253, lng: -73.35965842358323 }} />
-      <Marker position={{ lat: 45.5423038370318, lng: -73.5999843513176 }} />
-      <Marker position={{ lat: 45.39398705428811, lng: -73.39811057202073 }} />
-      <Marker position={{ lat: 45.269447284136945, lng: -73.57663840405198 }} />
-      <Marker position={{ lat: 45.52306396313225, lng: -73.42832297436448 }} />
-      <Marker position={{ lat: 45.47782436103669, lng: -73.43793601147385 }} />
-      <Marker position={{ lat: 45.53076070078878, lng: -73.61234397045823 }} />
-      <Marker position={{ lat: 45.57980264702181, lng: -73.7043544685051 }} />
-
       {markers.map((marker) => (
         <Marker
           position={{ lat: marker.lat, lng: marker.lng }}
-          //icon={{ url: "" }}
+          //icon={{ url: "/golficon.png",scaledSize: new window.google.maps.Size(1000,1000) }}
           onClick={() => {
-            setSelected(marker);
+            setLocation(marker);
             console.log(marker);
           }}
         />
       ))}
-      {selected ? (
+      {location ? (
         <InfoWindow
-          position={{ lat: selected.lat, lng: selected.lng }}
+          position={{ lat: location.lat, lng: location.lng }}
           onCloseClick={() => {
-            selected(null);
+            setLocation(null);
           }}
         >
           <div>

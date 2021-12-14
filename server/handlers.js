@@ -1,3 +1,4 @@
+
 "use strict";
 // use this package to generate unique ids: https://www.npmjs.com/package/uuid
 //just incase I need it later
@@ -15,7 +16,7 @@ const options = {
 
 // post newuser information
 const addUser = async (req, res) => {
-  const { name, email, password, age, gender, handicap, zipCode } = req.body;
+  const { name, email, password, age, gender, handicap, location } = req.body;
   if (
     !name ||
     !email ||
@@ -23,7 +24,7 @@ const addUser = async (req, res) => {
     !age ||
     !gender ||
     !handicap ||
-    !zipCode
+    !location
   ) {
     return res.status(500).json({
       status: "error",
@@ -54,7 +55,7 @@ const addUser = async (req, res) => {
     if (newUser.acknowledged && newUser.insertedId) {
       return res.status(201).json({
         status: 201,
-        user: { name, email, age, gender, handicap, zipCode },
+        user: { name, email, age, gender, handicap, location },
       });
     } else {
       return res.status(500).json({

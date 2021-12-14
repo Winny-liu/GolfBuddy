@@ -4,13 +4,11 @@ import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { useHistory } from "react-router";
 import UserProfiles from "./UserProfiles";
 import background3 from "../assets/background3.jpg";
-//const CurrentUser = sessionStorage.getItem("signInUser");
+import dayjs from "dayjs";
 
 const NewPost = () => {
   const { user, setStatus } = useContext(CurrentUserContext);
-
   const [teeTime, setTeeTime] = useState("");
-
   const [golfCourse, setGolfCourse] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
@@ -52,6 +50,10 @@ const NewPost = () => {
               description,
             },
           ]);
+          setDate("");
+          setTeeTime("");
+          setGolfCourse("");
+          setDescription("");
         } else if (data.status === 400) {
           setStatus("error");
           //setErrMessage(data.message);
@@ -64,83 +66,87 @@ const NewPost = () => {
   return (
     <>
       <Img src={background3} />
-      <Wrapper1>
-        <Title>New Post</Title>
-        <Container onSubmit={handleSubmit}>
-          <Box>
-            <Label htmlFor="golfCourse">Golf Course: </Label>
-            <Input
-              type="text"
-              placeholder="GolfCourse"
-              required
-              value={golfCourse}
-              onChange={(e) => {
-                setGolfCourse(e.target.value);
-              }}
-            />
-          </Box>
-          <Box>
-            <Label htmlFor="teeTime">TeeTime: </Label>
-            <Input
-              type="time"
-              placeholder="TeeTime"
-              required
-              value={teeTime}
-              onChange={(e) => {
-                setTeeTime(e.target.value);
-              }}
-            />
-          </Box>
-          <Box>
-            <Label htmlFor="date">Date: </Label>
-            <Input
-              type="date"
-              placeholder="Date"
-              required
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-              }}
-            />
-          </Box>
-          <Box>
-            <Label htmlFor="description">Description: </Label>
-            <Input
-              type="text area"
-              placeholder="Description"
-              required
-              value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
-            />
-          </Box>
+      <Wrapper3>
+        <Wrapper1>
+          <Container onSubmit={handleSubmit}>
+            <Title>New Post</Title>
+            <Box>
+              <Label htmlFor="golfCourse">Golf Course: </Label>
+              <Input
+                type="text"
+                placeholder="GolfCourse"
+                required
+                value={golfCourse}
+                onChange={(e) => {
+                  setGolfCourse(e.target.value);
+                }}
+              />
+            </Box>
+            <Box>
+              <Label htmlFor="teeTime">TeeTime: </Label>
+              <Input
+                type="time"
+                placeholder="TeeTime"
+                required
+                value={teeTime}
+                onChange={(e) => {
+                  setTeeTime(e.target.value);
+                }}
+              />
+            </Box>
+            <Box>
+              <Label htmlFor="date">Date: </Label>
+              <Input
+                type="date"
+                placeholder="Date"
+                required
+                value={date}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+              />
+            </Box>
+            <Box>
+              <Label htmlFor="description">Description: </Label>
+              <Textarea
+                type="text area"
+                placeholder="Description"
+                required
+                value={description}
+                onChange={(e) => {
+                  setDescription(e.target.value);
+                }}
+              />
+            </Box>
 
-          <Button type="submit">Submit</Button>
-        </Container>
-      </Wrapper1>
-      {currentPost.map((post) => {
-        return (
-          <Wholewrap>
-          <Wrapper key={post._id}>
-            <Boxup>
-              <Date>Date:{post.date}</Date>
-              <Time>TeeTime: {post.teeTime}</Time>
-              <Course>Golf Course: {post.golfCourse}</Course>
-            </Boxup>
+            <Button type="submit">Submit</Button>
+          </Container>
+        </Wrapper1>
+        <Wrapper2>
+          {currentPost.map((post) => {
+            return (
+              <Wholewrap>
+                <Wrapper key={post._id}>
+                  <Boxup>
+                    <Date>Date: {dayjs(post?.date).format("DD MMM YYYY")}</Date>
+                    <Time>TeeTime: {post.teeTime}</Time>
+                    <Course>Golf Course: {post.golfCourse}</Course>
+                  </Boxup>
 
-            <Description>Description</Description>
-            <Description>{post.description}</Description>
+                  <Div>Description</Div>
+                  <Description>{post.description}</Description>
 
-            <Boxdown>
-              <Name>Name: {post.name} </Name>
+                  <Boxdown>
+                    <Name>Name: {post.name} </Name>
 
-              <Email>Email: {post.email}</Email>
-            </Boxdown>
-          </Wrapper>
-          </Wholewrap>
-        );
-      })}
+                    <Email>Email: {post.email}</Email>
+                  </Boxdown>
+                </Wrapper>
+              </Wholewrap>
+            );
+          })}
+        </Wrapper2>
+      </Wrapper3>
     </>
   );
 };
@@ -152,39 +158,43 @@ const Img = styled.img`
   top: 0;
   z-index: -1;
 `;
-
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+`;
 const Wrapper1 = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+const Wrapper2 = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  padding: 10px;
+  position: relative;
+  width: 70vw;
+  flex-direction: row; ;
 `;
 const Title = styled.div`
-  display: flex;
-  justify-content: right;
   font-size: 35px;
   font-weight: bolder;
   color: white;
-  margin-top: 20px;
-  margin-right: 140px;
-  z-index: 2;
+  margin: 15px;
 `;
 
 const Container = styled.form`
-  position: absolute;
-  right: 10px;
-
+  margin: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
   background-color: #008176;
-  padding-top: 100px;
-
+  padding-top: 10px;
   width: 25vw;
   height: 70vh;
-
-  margin-bottom: 30px;
   border-radius: 50px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
@@ -192,16 +202,38 @@ const Container = styled.form`
     0 100px 80px rgba(0, 0, 0, 0.07);
   border-radius: 16px;
 `;
-const Date = styled.div``;
-const Time = styled.div``;
-const Name = styled.div``;
-const Email = styled.div``;
+const Date = styled.div`
+  position: relative;
+  font-size: 20px;
+  color: black;
+`;
+const Time = styled.div`
+  position: relative;
+  font-size: 15px;
+  margin: 5px;
+`;
+const Name = styled.div`
+  position: relative;
+  font-size: 15px;
+  color: black;
+`;
+const Email = styled.div`
+  position: relative;
+  font-size: 15px;
+`;
+const Div = styled.div`
+  display: flex;
+  justify-content: right;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+`;
 
 const Description = styled.div`
-display: flex;
-flex-wrap:wrap;
-height: 150px;
-width: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 150px;
+  width: 200px;
 `;
 
 const Box = styled.div`
@@ -227,26 +259,32 @@ const Input = styled.input`
   margin: 10px;
   position: relative;
   right: 0px;
-
   height: 40px;
   width: 300px;
+  font-size: 20px;
+`;
+const Textarea = styled.textarea`
+  border: #d2d2d2 1px solid;
+  border-radius: 4px;
+  margin: 10px;
+  for
+  rows:"3"
+  right: 0px;
+  height: 80px;
+  width: 300px;
+  font-size:20px;
 `;
 
 const Button = styled.button`
   margin: 10px;
   font-size: 20px;
   padding: 5px;
-
   display: flex;
   text-align: center;
   align-items: center;
-
   border: 1px solid #008176;
   background-color: #ff6164;
-
   position: relative;
-  margin: 30px 50px 30px 50px;
-
   border-radius: 5px;
 
   &&:hover {
@@ -259,20 +297,16 @@ const Button = styled.button`
 const Wholewrap = styled.div`
   display: flex;
   flex-direction: row;
-  width:400px;
+  width: 400px;
   margin-top: 0;
-  flex-wrap:wrap;
-  align-items:center;
-
-
-
-
+  flex-wrap: wrap;
+  align-items: left;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 25px;
+
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 250px;
@@ -284,8 +318,8 @@ const Wrapper = styled.div`
 const Course = styled.div`
   position: relative;
   font-size: 20px;
+  color: black;
 `;
-
 
 const Boxup = styled.div`
   display: flex;
@@ -296,7 +330,7 @@ const Boxup = styled.div`
   background-color: #ff6164;
   bottom: 0;
   width: 100%;
-  padding: 15px;
+  padding: 20px;
   font-size: 25px;
   font-weight: bolder;
   bottom: 0px;
@@ -309,10 +343,7 @@ const Boxdown = styled.div`
   flex-direction: column;
   font-size: 25px;
   position: relative;
-  
-
   height: 50px;
-  background-color: #b9e769;
   bottom: 0;
   width: 100%;
   padding: 15px;

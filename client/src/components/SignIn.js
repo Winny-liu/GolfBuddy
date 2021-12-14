@@ -4,6 +4,7 @@ import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import background2 from "../assets/background2.jpg";
 
+
 const SignIn = () => {
   const { setUser } = useContext(CurrentUserContext);
   // Initial state of state variable inputData.
@@ -17,10 +18,7 @@ const SignIn = () => {
 
   const history = useHistory();
 
-  //if(sessionStorage.getItem("signInUser")){
-  // console.log("signedIn");
-  //history.push("/");
-  //}
+  
 
   // This function will be executed when the user has completed the form and clicked the Confirm button.
   const handleClick = (ev) => {

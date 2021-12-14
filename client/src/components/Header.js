@@ -40,6 +40,8 @@ const Header = () => {
 
         <RightSideButtons>
           {user ? (
+            <>
+            <Greeting>Welcome Back!  {user.name}</Greeting>
             <NewPost
               onClick={handleNewPostClick}
               onKeyPress={handleNewPostClick}
@@ -47,6 +49,7 @@ const Header = () => {
             >
               Post a game
             </NewPost>
+            </>
           ) : (
             <>
              <Usermap
@@ -81,10 +84,8 @@ const Header = () => {
 
 const Wrapper = styled.div`
   box-shadow: 0 0 5px 0px rgb(0 0 0 / 0.5);
-
-  border-radius: 0 0 3px 3px;
   margin: 10px;
-  border-radius: 20px;
+  border-radius: 60px;
 `;
 const Container = styled.div`
   display: flex;
@@ -96,8 +97,6 @@ const Title = styled.div`
 
   font-size: 10rem;
   text-align: center;
-
-
   color: black;
   font-size: 40px;
   font-weight: 800;
@@ -120,7 +119,10 @@ const RightSideButtons = styled.div`
   display: flex;
   align-items: center;
 `;
+const Greeting = styled.div`
 
+
+`
 const NewPost = styled.button`
   margin: 10px;
   font-size: 20px;

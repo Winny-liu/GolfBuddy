@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-
+import UserMap from "./UserMap";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-import UserCard from "./UserCard";
 import PostFilterBar from "./PostFilterBar";
 import UserProfiles from "./UserProfiles";
 import background2 from "../assets/background2.jpg";
@@ -15,10 +14,11 @@ const SignUp = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [handicap, setHandicap] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  // const [zipCode, setZipCode] = useState("");
   const [status, setStatus] = useState("");
-
   const { setUser } = useContext(CurrentUserContext);
+  const [location, setLocation] = useState([]);
+
   let history = useHistory();
 
   const handleSubmit = (ev) => {
@@ -37,7 +37,7 @@ const SignUp = () => {
         age,
         gender,
         handicap,
-        zipCode,
+        location,
       }),
     })
       .then((res) => res.json())
@@ -63,7 +63,7 @@ const SignUp = () => {
     age !== "" &&
     gender !== "" &&
     handicap !== "" &&
-    zipCode !== ""
+    location !== ""
   ) {
     // If the user input in the form meets all the requirements, `readyToSubmit` becomes true and the Confirm button is enabled.
     readyToSubmit = true;
@@ -72,94 +72,99 @@ const SignUp = () => {
   return (
     <>
       <Img src={background2} />
-      <Wrapper>
-        <Title>Sign Up</Title>
-        <Form onClick={handleSubmit}>
-          <Container>
-            <Input
-              type="text"
-              placeholder="Name"
-              required
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-            ></Input>
+      <Wrapper3>
+        <Wrapper>
+          <Title>Sign Up</Title>
+          <Form onClick={handleSubmit}>
+            <Container>
+              <Input
+                type="text"
+                placeholder="Name"
+                required
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              ></Input>
 
-            <Input
-              type="email"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            ></Input>
+              <Input
+                type="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              ></Input>
 
-            <Input
-              type="password"
-              placeholder="password"
-              required
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            ></Input>
+              <Input
+                type="password"
+                placeholder="password"
+                required
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              ></Input>
 
-            <Input
-              type="text"
-              placeholder="Age"
-              required
-              value={age}
-              onChange={(e) => {
-                setAge(e.target.value);
-              }}
-            ></Input>
+              <Input
+                type="text"
+                placeholder="Age"
+                required
+                value={age}
+                onChange={(e) => {
+                  setAge(e.target.value);
+                }}
+              ></Input>
 
-            <select
-              id="gender"
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+              <select
+                id="gender"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
 
-            <Input
-              type="text"
-              placeholder="Handicap"
-              required
-              value={handicap}
-              onChange={(e) => {
-                setHandicap(e.target.value);
-              }}
-            ></Input>
+              <Input
+                type="text"
+                placeholder="Handicap"
+                required
+                value={handicap}
+                onChange={(e) => {
+                  setHandicap(e.target.value);
+                }}
+              ></Input>
 
-            <Input
-              type="text"
-              placeholder="ZipCode"
-              required
-              value={zipCode}
-              onChange={(e) => {
-                setZipCode(e.target.value);
-              }}
-            ></Input>
+              {/*<Input
+                type="text"
+                placeholder="Location"
+                required
+                value={location}
+                onChange={(e) => {
+                  setZipCode(e.target.value);
+                }}
+              ></Input>*/}
 
-            <Div>
-              <Button type="reset">Clear</Button>
-              {readyToSubmit ? (
-                <Button type="submit">Confirm</Button>
-              ) : (
-                <Button type="submit" disabled>
-                  Confirm
-                </Button>
-              )}
-            </Div>
-          </Container>
-        </Form>
-      </Wrapper>
+              <Div>
+                <Button type="reset">Clear</Button>
+                {readyToSubmit ? (
+                  <Button type="submit">Confirm</Button>
+                ) : (
+                  <Button type="submit" disabled>
+                    Confirm
+                  </Button>
+                )}
+              </Div>
+            </Container>
+          </Form>
+        </Wrapper>
+        <Wrapper2>
+          <UserMap />
+        </Wrapper2>
+      </Wrapper3>
     </>
   );
 };
@@ -171,6 +176,18 @@ const Img = styled.img`
   top: 0;
   z-index: -1;
 `;
+const Wrapper2 = styled.div`
+  display: block;
+  margin: 50px;
+  border: 2px solid;
+  width: 50vw;
+  height: 50vh;
+`;
+const Wrapper3 = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+`;
 
 const Wrapper = styled.div`
   position: relative;
@@ -179,8 +196,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+
   background-color: #008176;
 
   width: 25vw;
@@ -218,7 +234,7 @@ const Form = styled.form`
 `;
 
 const Container = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: column;
 `;
 
@@ -265,4 +281,5 @@ const Button = styled.button`
     box-shadow: 10px 10px 99px 6px rgba(185, 231, 105, 1);
   }
 `;
+
 export default SignUp;

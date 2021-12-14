@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 import { CircularProgress } from "@mui/material";
-
+import dayjs from "dayjs";
 import PostsFilter from "./PostsFilter";
 
 const PostProfiles = () => {
@@ -27,50 +27,46 @@ const PostProfiles = () => {
   return (
     <>
       <Wholewrap>
-    <Container>
-      {visiblePost &&
-        visiblePost.map((post) => {
-          return (
-        
-          <Wrapper key={post._id}>
-            <Boxup>
-              <Date>Date:{post.date}</Date>
-              <Time>TeeTime: {post.teeTime}</Time>
-              <Course>Course: {post.golfCourse}</Course>
-            </Boxup>
+        <Container>
+          {visiblePost &&
+            visiblePost.map((post) => {
+              return (
+                <Wrapper key={post._id}>
+                  <Boxup>
+                    <Date>Date: {dayjs(post?.date).format("DD MMM YYYY")}</Date>
+                    <Time>TeeTime: {post.teeTime}</Time>
+                    <Course>Course: {post.golfCourse}</Course>
+                  </Boxup>
 
-            <Description>Description</Description>
-            <Description>{post.description}</Description>
+                  <Description>Description</Description>
+                  <Description>{post.description}</Description>
 
-            <Boxdown>
-              <Name>Name: {post.name} </Name>
+                  <Boxdown>
+                    <Name>Name: {post.name} </Name>
 
-              <Email>Email: {post.email}</Email>
-            </Boxdown>
-          </Wrapper>
-          
-          );
-        })}
-    </Container>
-    <PostsFilter
-    visiblePost={visiblePost}
-    setVisiblePost={setVisiblePost}
-    />
-    </Wholewrap>
-  </>
+                    <Email>Email: {post.email}</Email>
+                  </Boxdown>
+                </Wrapper>
+              );
+            })}
+        </Container>
+        <PostsFilter
+          visiblePost={visiblePost}
+          setVisiblePost={setVisiblePost}
+        />
+      </Wholewrap>
+    </>
   );
 };
 
 const Wholewrap = styled.div`
-display: flex;
+  display: flex;
 
-margin-left: ;
-
+  margin-left: ;
 `;
 
-
 const Wrapper = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: column;
   margin: 20px;
 
@@ -82,22 +78,34 @@ const Wrapper = styled.div`
   background-color: white;
 `;
 const Name = styled.div`
-  
-  
+  position: relative;
+  font-size: 20px;
+  color: black;
 `;
 
 const Course = styled.div`
   position: relative;
   font-size: 20px;
+  color: black;
 `;
-const Email = styled.div``;
-const Date = styled.div``;
-const Time = styled.div``;
+const Email = styled.div`
+  position: relative;
+  font-size: 15px;
+`;
+const Date = styled.div`
+  position: relative;
+  font-size: 20px;
+  color: black;
+`;
+const Time = styled.div`
+  position: relative;
+  font-size: 15px;
+  margin: 5px;
+`;
 const Description = styled.div`
-height: 150px;
+  height: 150px;
 `;
 const Age = styled.div``;
-
 
 const Wrapper1 = styled.div`
   display: flex;
@@ -123,7 +131,6 @@ const Container = styled.form`
   margin-top: 0;
 `;
 
-
 const Boxup = styled.div`
   display: flex;
   flex-direction: column;
@@ -139,18 +146,16 @@ const Boxup = styled.div`
   bottom: 0px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  
 `;
 
 const Boxdown = styled.div`
-   display: flex;
+  display: flex;
   flex-direction: column;
   font-size: 25px;
   position: relative;
-  
 
   height: 50px;
-  background-color: #b9e769;
+
   bottom: 0;
   width: 100%;
   padding: 15px;
@@ -158,7 +163,6 @@ const Boxdown = styled.div`
   bottom: 0px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-
 `;
 
 export default PostProfiles;
