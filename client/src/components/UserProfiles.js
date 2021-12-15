@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  width: 200px;
+  width: 300px;
   height: 280px;
   border-radius: 20px;
   background-color: #ff6164;
@@ -94,13 +94,10 @@ const Tee = styled.div`
 `;
 const Wholewrap = styled.div`
   display: flex;
-
   margin-left: ;
 `;
-const Filter = styled.div``;
-const Email = styled.div``;
 
-const Zipcode = styled.div``;
+const Email = styled.div``;
 const Gender = styled.div``;
 const Handicap = styled.div``;
 const Age = styled.div``;
@@ -117,15 +114,12 @@ const Container = styled.div`
 const Box = styled.div`
   display: flex;
   flex-direction: column;
-
   position: relative;
   top: 0px;
-
   height: 90px;
   background-color: white;
   bottom: 0;
   width: 100%;
-
   padding: 15px;
   font-size: 10px;
   bottom: 0px;

@@ -1,20 +1,18 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { Input } from "@mui/material";
 
-const FilterBar = ({
+const UserFilterBar = ({
   onGenderFilter,
   onNameFilter,
-  onDateFilter,
   onHandicapFilter,
   onAgeFilter,
 }) => {
   const [filters, setFilters] = useState({
     name: "",
     gender: "",
-    from: "",
-    to: "",
-    handicap: "",
     age: "",
+    handicap: "",
   });
 
   const handleInput = (event, field) => {
@@ -38,12 +36,6 @@ const FilterBar = ({
         break;
       case "handicap":
         onHandicapFilter(value);
-        break;
-      case "from":
-        onDateFilter(value, "from");
-        break;
-      case "to":
-        onDateFilter(value, "to");
         break;
 
       default:
@@ -70,7 +62,7 @@ const FilterBar = ({
 
         <Box>
           <Label htmlFor="gender">Gender</Label>
-          <select
+          <Select
             id="gender"
             onChange={(event) => {
               handleInput(event, "gender");
@@ -79,7 +71,7 @@ const FilterBar = ({
             <option>Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-          </select>
+          </Select>
         </Box>
 
         <Box>
@@ -88,7 +80,7 @@ const FilterBar = ({
             type="age"
             className="form"
             id="age"
-            //value={""}
+            
             onChange={(event) => {
               handleInput(event, "age");
             }}
@@ -97,11 +89,13 @@ const FilterBar = ({
         <Box>
           <Label htmlFor="handicap">Handicap</Label>
           <Input
-            type="text"
+            type="handicap"
             className="form"
             id="handicap"
-            //value={""}
-            onChange={(event)=>{handleInput( event,"handicape")}}
+            
+            onChange={(event) => {
+              handleInput(event, "handicap");
+            }}
           />
         </Box>
       </Container>
@@ -121,7 +115,6 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   background-color: #008176;
-
   width: 20vw;
   height: 50vh;
   margin-top: 30px;
@@ -133,25 +126,17 @@ const Container = styled.div`
     0 100px 80px rgba(0, 0, 0, 0.07);
   border-radius: 16px;
 `;
-const Input = styled.input`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: #d2d2d2 1px solid;
-  border-radius: 4px;
-  margin: 10px;
-  position: relative;
-  right: 0px;
+const Select = styled.select`
+height: 40px;
+width: 80px;
+`
 
-  height: 40px;
-  width: 200px;
-`;
+
 const Box = styled.div``;
 
 const Label = styled.div`
   margin: 0px;
   position: relative;
-
   color: white;
   font-size: 20px;
 `;
@@ -165,4 +150,4 @@ const Title = styled.div`
   margin-top: 10px;
 `;
 
-export default FilterBar;
+export default UserFilterBar;

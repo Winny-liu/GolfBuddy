@@ -3,8 +3,6 @@ import styled from "styled-components";
 import UserMap from "./UserMap";
 import { useHistory } from "react-router";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-import PostFilterBar from "./PostFilterBar";
-import UserProfiles from "./UserProfiles";
 import background2 from "../assets/background2.jpg";
 
 const SignUp = () => {
@@ -17,7 +15,7 @@ const SignUp = () => {
   // const [zipCode, setZipCode] = useState("");
   const [status, setStatus] = useState("");
   const { setUser } = useContext(CurrentUserContext);
-  const [location, setLocation] = useState([]);
+  const [location, setLocation] = useState(null);
 
   let history = useHistory();
 
@@ -72,10 +70,11 @@ const SignUp = () => {
   return (
     <>
       <Img src={background2} />
-      <Wrapper3>
-        <Wrapper>
-          <Title>Sign Up</Title>
-          <Form onClick={handleSubmit}>
+
+      <Form onSubmit={handleSubmit}>
+        <Wrapper3>
+          <Wrapper>
+            <Title>Welcome Sign Up GolfBuddy!</Title>
             <Container>
               <Input
                 type="text"
@@ -117,8 +116,9 @@ const SignUp = () => {
                 }}
               ></Input>
 
-              <select
+              <Select
                 id="gender"
+                value={gender}
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
@@ -126,7 +126,7 @@ const SignUp = () => {
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
-              </select>
+              </Select>
 
               <Input
                 type="text"
@@ -138,18 +138,10 @@ const SignUp = () => {
                 }}
               ></Input>
 
-              {/*<Input
-                type="text"
-                placeholder="Location"
-                required
-                value={location}
-                onChange={(e) => {
-                  setZipCode(e.target.value);
-                }}
-              ></Input>*/}
+             
 
-              <Div>
-                <Button type="reset">Clear</Button>
+              
+                
                 {readyToSubmit ? (
                   <Button type="submit">Confirm</Button>
                 ) : (
@@ -157,14 +149,16 @@ const SignUp = () => {
                     Confirm
                   </Button>
                 )}
-              </Div>
+              
             </Container>
-          </Form>
-        </Wrapper>
-        <Wrapper2>
-          <UserMap />
-        </Wrapper2>
-      </Wrapper3>
+          </Wrapper>
+
+          <Wrapper2>
+          <Div>Please double click on the map to mark your location!</Div>
+            <UserMap location={location} setLocation={setLocation} />
+          </Wrapper2>
+        </Wrapper3>
+      </Form>
     </>
   );
 };
@@ -179,63 +173,56 @@ const Img = styled.img`
 const Wrapper2 = styled.div`
   display: block;
   margin: 50px;
-  border: 2px solid;
-  width: 50vw;
+  width: 40vw;
   height: 50vh;
+  margin-right: 70px;;
 `;
 const Wrapper3 = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-color: #008176;
+  width: 70vw;
+  border-radius: 10px;
+  margin-top: 50px;
+  
+  
 `;
 
 const Wrapper = styled.div`
-  position: relative;
-  top: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  background-color: #008176;
-
   width: 25vw;
-  height: 80vh;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  border-radius: 50px;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.042), 0 41.8px 33.4px rgba(0, 0, 0, 0.05),
-    0 100px 80px rgba(0, 0, 0, 0.07);
-  border-radius: 16px;
+  height: 70vh;
+  border-radius: 10px
+  
+  
 `;
 const Title = styled.div`
   display: flex;
   justify-content: center;
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bolder;
   color: white;
-  margin-top: 10px;
+  
+  margin-bottom:30px ;
 `;
 const Form = styled.form`
   display: flex;
-  flex-direction: column;
+  
   justify-content: center;
-
-  position: relative;
-
-  width: 250px;
-
-  margin-top: 20px;
-
-  border-radius: 16px;
-  font-size: 15px;
+  
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
 `;
 
 const Input = styled.input`
@@ -244,34 +231,47 @@ const Input = styled.input`
   justify-content: center;
   border: #d2d2d2 1px solid;
   border-radius: 4px;
+  
   margin: 10px;
-  position: relative;
-  right: 33px;
+  height: 30px;
+  width: 200px;
 
-  height: 40px;
-  width: 300px;
 `;
 
+
+const Select = styled.select`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: #d2d2d2 1px solid;
+  border-radius: 4px;
+  margin: 10px;
+  height: 30px;
+  width: 200px;
+`;
 const Div = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  background-color: #ff6164;
+  width: 40vw;
+  padding:5px;
+  
 `;
 
 const Button = styled.button`
-  margin: 10px;
+  margin-top: 30px;
   font-size: 20px;
   padding: 5px;
-
   display: flex;
   text-align: center;
   align-items: center;
-
   border: 1px solid #008176;
   background-color: #ff6164;
-
   position: relative;
-  margin: 30px 50px 30px 50px;
-
+  
   border-radius: 5px;
 
   &&:hover {

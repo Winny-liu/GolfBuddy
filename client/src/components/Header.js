@@ -2,8 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-
-import UserMap from "./UserMap";
+import BuddyMap from "./BuddyMap";
 
 const Header = () => {
   let history = useHistory();
@@ -12,7 +11,7 @@ const Header = () => {
   };
 
   const handleUserMapClick = () => {
-    history.push(`/usermap`);
+    history.push(`/buddymap`);
   };
   const handleSignInClick = () => {
     history.push(`/sign-in`);
@@ -41,24 +40,23 @@ const Header = () => {
         <RightSideButtons>
           {user ? (
             <>
-            <Greeting>Welcome Back!  {user.name}</Greeting>
-            <NewPost
-              onClick={handleNewPostClick}
-              onKeyPress={handleNewPostClick}
-              tabIndex="0"
-            >
-              Post a game
-            </NewPost>
+              <Greeting>Hey! {user.name}</Greeting>
+              <NewPost
+                onClick={handleNewPostClick}
+                onKeyPress={handleNewPostClick}
+                tabIndex="0"
+              >
+                Post a game
+              </NewPost>
             </>
           ) : (
             <>
-             <Usermap
+              <Usermap
                 onClick={handleUserMapClick}
                 onKeyPress={handleUserMapClick}
                 tabIndex="0"
               >
                 Buddy Map
-                
               </Usermap>
               <SignUp
                 onClick={handleSignUpClick}
@@ -91,10 +89,9 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 10px;
 `;
 const Title = styled.div`
-
   font-size: 10rem;
   text-align: center;
   color: black;
@@ -119,25 +116,17 @@ const RightSideButtons = styled.div`
   display: flex;
   align-items: center;
 `;
-const Greeting = styled.div`
-
-
-`
+const Greeting = styled.div``;
 const NewPost = styled.button`
   margin: 10px;
   font-size: 20px;
   padding: 5px;
-
   display: flex;
   text-align: center;
   align-items: center;
-
   border: 1px solid #008176;
   background-color: #ff6164;
-
   position: relative;
- 
-
   border-radius: 5px;
 
   &&:hover {
@@ -149,7 +138,7 @@ const NewPost = styled.button`
 `;
 
 const Usermap = styled.button`
- margin: 10px;
+  margin: 10px;
   font-size: 20px;
   padding: 5px;
   border-radius: 10px;
@@ -162,7 +151,7 @@ const Usermap = styled.button`
 `;
 
 const SignIn = styled.button`
- margin: 10px;
+  margin: 10px;
   font-size: 20px;
   padding: 5px;
   border-radius: 10px;
@@ -175,7 +164,7 @@ const SignIn = styled.button`
 `;
 
 const SignUp = styled.button`
- margin: 10px;
+  margin: 10px;
   font-size: 20px;
   padding: 5px;
   border-radius: 10px;

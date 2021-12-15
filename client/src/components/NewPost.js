@@ -172,7 +172,6 @@ const Wrapper1 = styled.div`
 const Wrapper2 = styled.div`
   display: flex;
   flex-direction: row;
-
   padding: 10px;
   position: relative;
   width: 70vw;
@@ -194,7 +193,7 @@ const Container = styled.form`
   background-color: #008176;
   padding-top: 10px;
   width: 25vw;
-  height: 70vh;
+  height: 80vh;
   border-radius: 50px;
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.02),
     0 6.7px 5.3px rgba(0, 0, 0, 0.028), 0 12.5px 10px rgba(0, 0, 0, 0.035),
@@ -301,12 +300,12 @@ const Wholewrap = styled.div`
   margin-top: 0;
   flex-wrap: wrap;
   align-items: left;
+  
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-
   align-items: center;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   width: 250px;

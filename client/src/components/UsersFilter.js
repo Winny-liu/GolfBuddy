@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import FilterBar from "./FilterBar";
+import FilterBar from "./UserFilterBar";
 import { UsersContext } from "./Contexts/UsersContext";
 
 const isSameOrAfter = require("dayjs/plugin/isSameOrAfter");

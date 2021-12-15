@@ -75,6 +75,7 @@ const PostFilterBar = ({ onNameFilter, onDateFilter, onCourseFilter }) => {
             type="date"
             className="form"
             id="startDate"
+            lang="fr"
             onChange={(event) => {
               handleInput(event, "from");
             }}
@@ -98,7 +99,7 @@ const PostFilterBar = ({ onNameFilter, onDateFilter, onCourseFilter }) => {
 
 const Wrapper = styled.div``;
 const Container = styled.div`
- position: absolute;
+  position: absolute;
   top: 95px;
   right: 10px;
   display: flex;
@@ -129,12 +130,11 @@ const Title = styled.div`
   font-size: 35px;
   font-weight: bolder;
   color: white;
-  margin-top: 10px;
+  
 `;
 const Label = styled.div`
   margin: 0px;
   position: relative;
-
   color: white;
   font-size: 20px;
 `;

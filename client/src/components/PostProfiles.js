@@ -105,22 +105,6 @@ const Time = styled.div`
 const Description = styled.div`
   height: 150px;
 `;
-const Age = styled.div``;
-
-const Wrapper1 = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Title = styled.div`
-  display: flex;
-  justify-content: right;
-  font-size: 35px;
-  font-weight: bolder;
-  color: white;
-  margin-top: 20px;
-  margin-right: 140px;
-  z-index: 2;
-`;
 
 const Container = styled.form`
   display: flex;

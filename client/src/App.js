@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp";
 import NewPost from "./components/NewPost";
 import UserProfiles from "./components/UserProfiles";
 import PostProfiles from "./components/PostProfiles";
+import BuddyMap from "./components/BuddyMap";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -39,8 +40,8 @@ function App() {
             <Route exact path="/posts">
               <PostProfiles />
             </Route>
-            <Route exact path="/usermap">
-              <UserMap />
+            <Route exact path="/buddymap">
+              <BuddyMap />
             </Route>
            
           </Switch>

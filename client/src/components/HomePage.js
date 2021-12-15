@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import UserProfiles from "./UserProfiles";
 import PostProfiles from "./PostProfiles";
 import background from "../assets/background.jpg";
-
 import { useHistory } from "react-router-dom";
 
 const HomePage = () => {
@@ -65,9 +64,9 @@ const Img = styled.img`
   filter: grayscale(0.3);
 `;
 const Div = styled.div`
-  color:white;
+  color: white;
   margin: 10px;
-  font-weight:600;
+  font-weight: 600;
   font-size: 30px;
 `;
 
@@ -97,7 +96,7 @@ const WrapperLeft = styled.div`
   justify-content: center;
   align-items: center;
   height: 300px;
-  border: 2px solid rgba(255,255,255,.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   margin: 200px;
   display: flex;
   flex-direction: column;
@@ -108,11 +107,9 @@ const WrapperLeft = styled.div`
 const WrapperRight = styled.div`
   justify-content: center;
   align-items: center;
-
   height: 300px;
-  border: 2px solid rgba(255,255,255,.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   margin: 200px;
-
   display: flex;
   flex-direction: column;
   width: 50vw;

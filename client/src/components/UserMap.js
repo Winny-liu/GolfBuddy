@@ -17,23 +17,22 @@ import golficon from "../assets/golficon.png";
 Geocode.setLanguage("en");
 
 const mapContainerStyle = {
-  width: "50vw",
+  width: "40vw",
   height: "50vh",
 };
 
 const center = { lat: 45.5017, lng: -73.5673 };
 const options = {
   // styles: mapContainerStyle,
-  //disableDefaultUI: true,
+  disableDefaultUI: true,
 };
 
-const UserMap = () => {
+const UserMap = ({ location, setLocation }) => {
   const { isLoaded, loadError } = useLoadScript({
+    language: "en",
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
   const [markers, setMarkers] = useState([]);
-
-  const [location, setLocation] = useState();
 
   console.log(isLoaded, loadError);
   const onMapClick = useCallback((event) => {

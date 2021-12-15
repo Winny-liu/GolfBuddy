@@ -12,7 +12,7 @@ dayjs.extend(isSameOrAfter);
 function PostsFilter({ visiblePost, setVisiblePost }) {
   const { posts } = useContext(PostsContext);
 
-  const [allData, setData] = useState(posts);
+ // const [allData, setData] = useState(posts);
 
   const handleFilterName = (name) => {
     const filteredData = posts.filter((post) => {
@@ -49,6 +49,8 @@ function PostsFilter({ visiblePost, setVisiblePost }) {
       ) {
         return post;
       }
+        
+      
     });
 
     setVisiblePost(filteredData);
