@@ -80,7 +80,6 @@ const UserFilterBar = ({
             type="age"
             className="form"
             id="age"
-            
             onChange={(event) => {
               handleInput(event, "age");
             }}
@@ -92,7 +91,6 @@ const UserFilterBar = ({
             type="handicap"
             className="form"
             id="handicap"
-            
             onChange={(event) => {
               handleInput(event, "handicap");
             }}
@@ -127,10 +125,9 @@ const Container = styled.div`
   border-radius: 16px;
 `;
 const Select = styled.select`
-height: 40px;
-width: 80px;
-`
-
+  height: 40px;
+  width: 80px;
+`;
 
 const Box = styled.div``;
 

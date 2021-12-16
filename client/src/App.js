@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalStyles from "./components/GlobalStyles";
 import SignIn from "./components/SignIn";
 import HomePage from "./components/HomePage";
-import UserMap from "./components/UserMap";
 import Header from "./components/Header";
 import SignUp from "./components/SignUp";
 import NewPost from "./components/NewPost";

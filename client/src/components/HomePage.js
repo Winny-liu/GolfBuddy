@@ -1,9 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import UserProfiles from "./UserProfiles";
-import PostProfiles from "./PostProfiles";
 import background from "../assets/background.jpg";
 import { useHistory } from "react-router-dom";
 

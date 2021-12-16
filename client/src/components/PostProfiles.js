@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { CircularProgress } from "@mui/material";
 import dayjs from "dayjs";
@@ -85,7 +85,7 @@ const Name = styled.div`
 
 const Course = styled.div`
   position: relative;
-  font-size: 20px;
+  font-size: 18px;
   color: black;
 `;
 const Email = styled.div`
@@ -104,6 +104,8 @@ const Time = styled.div`
 `;
 const Description = styled.div`
   height: 150px;
+  font-size: 20px;
+  padding: 10px;
 `;
 
 const Container = styled.form`

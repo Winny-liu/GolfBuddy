@@ -1,18 +1,13 @@
-import React, { useEffect, useState, useContext, useCallback } from "react";
-import styled from "styled-components";
-import { UsersContext } from "./Contexts/UsersContext";
+import React, { useState } from "react";
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import zIndex from "@mui/material/styles/zIndex";
 
-//import "@reach/combobox/styles.css";
 import Geocode from "react-geocode";
 import mapStyles from "../data/mapStyles";
-import golficon from "../assets/golficon.png";
 
 Geocode.setLanguage("en");
 
@@ -22,10 +17,6 @@ const mapContainerStyle = {
 };
 
 const center = { lat: 45.5017, lng: -73.5673 };
-const options = {
-  // styles: mapContainerStyle,
-  disableDefaultUI: true,
-};
 
 const UserMap = ({ location, setLocation }) => {
   const { isLoaded, loadError } = useLoadScript({
@@ -35,20 +26,7 @@ const UserMap = ({ location, setLocation }) => {
   const [markers, setMarkers] = useState([]);
 
   console.log(isLoaded, loadError);
-  const onMapClick = useCallback((event) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-      },
-    ]);
-  }, []);
 
-  // const mapRef = React.useRef();
-  //const onMapLoad = React.useCallback((map) => {
-  //  mapRef.current = map;
-  //});
   if (loadError) return "Error loading maps";
   if (!isLoaded) return "Loading Maps";
 
@@ -57,7 +35,7 @@ const UserMap = ({ location, setLocation }) => {
       mapContainerStyle={mapContainerStyle}
       zoom={11}
       center={center}
-      options={{ styles: mapStyles }}
+      options={{ styles: mapStyles, disableDefaultUI: true }}
       onClick={(event) => {
         setMarkers((current) => [
           ...current,
@@ -72,7 +50,6 @@ const UserMap = ({ location, setLocation }) => {
       {markers.map((marker) => (
         <Marker
           position={{ lat: marker.lat, lng: marker.lng }}
-          //icon={{ url: "/golficon.png",scaledSize: new window.google.maps.Size(1000,1000) }}
           onClick={() => {
             setLocation(marker);
             console.log(marker);

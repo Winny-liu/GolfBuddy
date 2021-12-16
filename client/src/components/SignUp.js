@@ -12,7 +12,6 @@ const SignUp = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [handicap, setHandicap] = useState("");
-  // const [zipCode, setZipCode] = useState("");
   const [status, setStatus] = useState("");
   const { setUser } = useContext(CurrentUserContext);
   const [location, setLocation] = useState(null);
@@ -46,7 +45,7 @@ const SignUp = () => {
           history.push(`/`);
         } else if (data.status === 400) {
           setStatus("error");
-          //setErrMessage(data.message);
+          
         }
       });
   };

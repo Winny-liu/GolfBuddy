@@ -1,4 +1,3 @@
-
 "use strict";
 // use this package to generate unique ids: https://www.npmjs.com/package/uuid
 //just incase I need it later
@@ -17,6 +16,7 @@ const options = {
 // post newuser information
 const addUser = async (req, res) => {
   const { name, email, password, age, gender, handicap, location } = req.body;
+
   if (
     !name ||
     !email ||
@@ -79,19 +79,6 @@ const addUser = async (req, res) => {
 const getUser = async (req, res) => {
   const { email } = req.body;
 
-  //let result = users.find((user) => user.email == req.body.email);
-  // if (result) {
-  // if (result.password == req.body.password) {
-  //  res.status(201).json({
-  //  message: "Successful singin",
-  // });
-  //} else {
-  // res.status(500).json({
-  //   status: 500,
-  //   message: "Something went wrong, please try again later",
-  // });
-  //  }
-  // }
   const client = new MongoClient(MONGO_URI, options);
   try {
     await client.connect();
@@ -105,7 +92,7 @@ const getUser = async (req, res) => {
           data: " user not exist",
         });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json({
       status: 500,
       message: "Something went wrong, please try again later.",

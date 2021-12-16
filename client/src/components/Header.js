@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-import BuddyMap from "./BuddyMap";
 
 const Header = () => {
   let history = useHistory();
@@ -36,6 +35,7 @@ const Header = () => {
           Home
         </HomeButton>
         <Title>GolfBuddy</Title>
+        
 
         <RightSideButtons>
           {user ? (
@@ -88,15 +88,14 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px;
 `;
 const Title = styled.div`
   font-size: 10rem;
-  text-align: center;
   color: black;
   font-size: 40px;
   font-weight: 800;
+  
 `;
 const HomeButton = styled.button`
   margin: 10px;

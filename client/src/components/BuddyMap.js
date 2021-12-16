@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* global google */
 import golficon2 from "../assets/golficon2.webp";
-import React, { useEffect, useState, useContext, useCallback } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { UsersContext } from "./Contexts/UsersContext";
 import {
@@ -13,7 +13,7 @@ import {
 import Geocode from "react-geocode";
 import mapStyles from "../data/mapStyles";
 import golficon from "../assets/golficon.png";
-import { red } from "@mui/material/colors";
+
 
 Geocode.setLanguage("en");
 
@@ -86,8 +86,9 @@ const BuddyMap = () => {
             }}
           >
             <div>
-              <h1>{selectedUser.name}</h1>
-              <h2>Handicap:{selectedUser.handicap}</h2>
+              <H1>{selectedUser.name}</H1>
+              <H2>Handicap:{selectedUser.handicap}</H2>
+              <H3>{selectedUser.email}</H3>
             </div>
           </InfoWindow>
         )}
@@ -95,7 +96,21 @@ const BuddyMap = () => {
     </>
   );
 };
-
+const H1 = styled.div`
+  font-size: 10rem;
+  color: #ff6164;
+  font-size: 30px;
+  font-weight: 800;
+  text-align:center;
+  `
+  const H2 = styled.div`
+  font-size: 20px;
+  
+  `
+  const H3 = styled.div`
+  font-size: 15px;
+  
+  `
 const Img = styled.img`
   width: 190px;
   height: 160px;

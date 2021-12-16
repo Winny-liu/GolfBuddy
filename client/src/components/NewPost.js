@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { CurrentUserContext } from "./Contexts/CurrentUserContext";
-import { useHistory } from "react-router";
-import UserProfiles from "./UserProfiles";
 import background3 from "../assets/background3.jpg";
 import dayjs from "dayjs";
 
@@ -14,7 +12,7 @@ const NewPost = () => {
   const [description, setDescription] = useState("");
   const [currentPost, setCurrentPost] = useState([]);
 
-  let history = useHistory();
+  
   console.log(user);
 
   const handleSubmit = (ev) => {

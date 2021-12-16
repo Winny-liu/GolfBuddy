@@ -30,10 +30,10 @@ const PostFilterBar = ({ onNameFilter, onDateFilter, onCourseFilter }) => {
         break;
 
       case "from":
-        onDateFilter(value, "from");
+        onDateFilter(value, "from", filters);
         break;
       case "to":
-        onDateFilter(value, "to");
+        onDateFilter(value, "to", filters);
         break;
 
       default:
@@ -85,6 +85,7 @@ const PostFilterBar = ({ onNameFilter, onDateFilter, onCourseFilter }) => {
           <Label htmlFor="endDate">To</Label>
           <Input
             type="date"
+            lang="en-CA"
             className="to"
             id="endDate"
             onChange={(event) => {
@@ -109,7 +110,6 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   background-color: #008176;
-
   width: 20vw;
   height: 50vh;
   margin-top: 30px;
@@ -130,7 +130,6 @@ const Title = styled.div`
   font-size: 35px;
   font-weight: bolder;
   color: white;
-  
 `;
 const Label = styled.div`
   margin: 0px;
